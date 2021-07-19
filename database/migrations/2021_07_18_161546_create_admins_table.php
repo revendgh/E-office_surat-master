@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableSuratPenelitian extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateTableSuratPenelitian extends Migration
      */
     public function up()
     {
-        Schema::create('surat_penelitian', function (Blueprint $table) {
+        Schema::create('admin', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_surat')->unsigned();
-            $table->foreign('id_surat')
+            $table->bigInteger('id_users')->unsigned();
+            $table->foreign('id_users')
                   ->references('id')
-                  ->on('surat');
-            $table->text('tujuan');
-            $table->string('tempat_penelitian');
-            $table->string('tanggal_penelitian');
+                  ->on('users');      
+            $table->string('no_induk_pegawai')->unique();
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreateTableSuratPenelitian extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surat_penelitian');
+        Schema::dropIfExists('admin');
     }
 }

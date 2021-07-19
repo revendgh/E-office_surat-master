@@ -10,7 +10,7 @@ class Sp_proposalKP extends Model
     use HasFactory;
 
     protected $table = 'sp_proposal_kp';
-    protected $fillable = ['id_surat', 'tujuan_surat', 'tempat_kp', 'alamat_kp', 'mahasiswa', 'lama_waktu', 'jangka_waktu'];
+    protected $fillable = ['id_surat', 'tujuan_surat', 'tempat_kp', 'mahasiswa', 'lama_waktu', 'jangka_waktu'];
 
     public function surat(){
         return $this->belongsTo(Surat::class);

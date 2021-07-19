@@ -10,7 +10,7 @@ class Wakil_rektor extends Model
     use HasFactory;
 
     protected $table = "wakil_rektor";
-    protected $fillable = ['id_users', 'no_induk_pegawai'];
+    protected $fillable = ['id_users', 'jabatan', 'no_induk_pegawai'];
 
     /*
     |------------------------------------------------------------------------------------

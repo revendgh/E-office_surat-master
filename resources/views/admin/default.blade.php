@@ -39,6 +39,7 @@
         </div>
     </div>
 
+    @yield('script')
     <script src="{{ mix('/js/app.js') }}"></script>
 
     <!-- Global js content -->

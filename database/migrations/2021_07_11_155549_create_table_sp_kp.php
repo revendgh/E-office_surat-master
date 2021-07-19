@@ -19,11 +19,10 @@ class CreateTableSpKp extends Migration
             $table->foreign('id_surat')
                   ->references('id')
                   ->on('surat');
-            $table->string('tujuan');
+            $table->text('tujuan');
             $table->string('tempat_kp');
-            $table->string('alamat_kp');
             $table->string('surat_balasan');
-            $table->string('no_surat');
+            $table->string('nomor_surat');
             $table->string('tanggal_surat');
             $table->text('mahasiswa');
             $table->string('waktu_kp');

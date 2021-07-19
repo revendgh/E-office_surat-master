@@ -5,6 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Mahasiswa;
+use App\Models\Tendik_akademik;
+use App\Models\Tendik_jurusan;
+use App\Models\Arsiparis;
+use App\Models\Rektor;
+use App\Models\Sekretariat;
+use App\Models\Unit_kerja;
+use App\Models\Wakil_rektor;
+use App\Models\Admin;
 
 class UserController extends Controller
 {
@@ -42,8 +51,48 @@ class UserController extends Controller
 
         $data = $request->all();
         $data['password'] = bcrypt(request('password'));
-
-        User::create($data);
+        $user = User::create($data);
+        $data['id_users'] = $user->id;
+        
+        if ($data['role'] == 1) {
+            $data['jurusan'] = $data['jurusan_mahasiswa'];
+            Mahasiswa::create($data);
+        }
+        elseif ($data['role'] == 11) {
+            $data['no_induk_pegawai'] = $data['no_induk_pegawai_jurusan'];
+            $data['jurusan'] = $data['jurusan_jurusan'];
+            Tendik_jurusan::create($data);
+        }
+        elseif ($data['role'] == 10) {
+            $data['no_induk_pegawai'] = $data['no_induk_pegawai_pegawai'];
+            Tendik_akademik::create($data);
+        }
+        elseif ($data['role'] == 4) {
+            $data['no_induk_pegawai'] = $data['no_induk_pegawai_unit'];
+            $data['jabatan'] = $data['jabatan_unit'];
+            Unit_kerja::create($data);
+        }
+        elseif ($data['role'] == 5) {
+            $data['no_induk_pegawai'] = $data['no_induk_pegawai_pegawai'];
+            Arsiparis::create($data);
+        }
+        elseif ($data['role'] == 6) {
+            $data['no_induk_pegawai'] = $data['no_induk_pegawai_pegawai'];
+            Sekretariat::create($data);
+        }
+        elseif ($data['role'] == 7) {
+            $data['no_induk_pegawai'] = $data['no_induk_pegawai_warektor'];
+            $data['jabatan'] = $data['jabatan_warektor'];
+            Wakil_rektor::create($data);
+        }
+        elseif ($data['role'] == 8) {
+            $data['no_induk_pegawai'] = $data['no_induk_pegawai_pegawai'];
+            Rektor::create($data);
+        }
+        elseif ($data['role'] == 100) {
+            $data['no_induk_pegawai'] = $data['no_induk_pegawai_pegawai'];
+            Admin::create($data);
+        }
 
         return back()->withSuccess(trans('app.success_store'));
     }

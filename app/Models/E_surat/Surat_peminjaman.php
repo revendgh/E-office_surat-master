@@ -10,7 +10,7 @@ class Surat_peminjaman extends Model
     use HasFactory;
 
     protected $table = 'surat_peminjaman';
-    protected $fillable = ['id_surat', 'tanggal_peminjaman', 'waktu_peminjaman', 'tujuan', 'objek'];
+    protected $fillable = ['id_surat', 'tujuan_surat', 'tanggal_peminjaman', 'waktu_peminjaman', 'tujuan', 'objek'];
 
     public function surat(){
         return $this->belongsTo(Surat::class);

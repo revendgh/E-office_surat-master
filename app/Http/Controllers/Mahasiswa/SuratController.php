@@ -19,6 +19,7 @@ use App\Models\E_surat\Surat_peminjaman;
 use App\Models\E_surat\Surat_penelitian;
 use App\Models\E_surat\Surat_perjalanan;
 use App\Models\E_surat\Surat_rekomendasi_beasiswa;
+use Str;
 use Illuminate\Http\Request;
 
 class SuratController extends Controller
@@ -257,6 +258,13 @@ class SuratController extends Controller
     {
         $data = $request->all();
         $surat = Surat::create($data);
+
+        $this->validate($request,[
+            'surat_balasan' => 'max:2000|mimes:pdf',
+        ]);
+        $name = Str::random(5).' '.$request->file('surat_balasan')->getClientOriginalName();
+        $file = $request->file('surat_balasan')->storeAs('KP/', $name, 'public');
+        $data['surat_balasan'] = $name;
 
         // fungsi insert child
         $data['id_surat'] = $surat->id;

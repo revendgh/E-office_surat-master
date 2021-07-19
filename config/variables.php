@@ -8,7 +8,7 @@ return [
     ],
 
     'role' => [
-        0 => 'Guest',
+        ''=> 'Silahkan Pilih Role',
         1 => 'Mahasiswa',
         11 => 'Tendik Jurusan',
         10 => 'Tendik Akademik',
@@ -18,6 +18,37 @@ return [
         7 => 'Wakil Rektor',
         8 => 'Rektor',
         100 => 'Admin',
+    ],
+
+    'prodi' => [
+        'Fisika' => 'Fisika',
+        'Matematika' => 'Matematika',
+        'Teknik Mesin' => 'Teknik Mesin',
+        'Teknik Elektro' => 'Teknik Elektro',
+        'Teknik Kimia' => 'Teknik Kimia',
+        'Teknik Material dan Metalurgi' => 'Teknik Material dan Metalurgi',
+        'Teknik Sipil' => 'Teknik Sipil',
+        'Perencanaan Wilayah dan Tata Kota' => 'Perencanaan Wilayah dan Tata Kota',
+        'Teknik Perkapalan' => 'Teknik Perkapalan',
+        'Sistem Informasi' => 'Sistem Informasi',
+        'Informatika' => 'Informatika',
+        'Teknik Industri ' => 'Teknik Industri ',
+        'Teknik Lingkungan' => 'Teknik Lingkungan',
+        'Teknik Kelautan' => 'Teknik Kelautan',
+        'Statistika' => 'Statistika',
+        'Ilmu Aktuaria' => 'Ilmu Aktuaria',
+        'Arsitektur' => 'Arsitektur',
+        'Teknologi Pangan' => 'Teknologi Pangan',
+        'Rekayasa Keselamatan' => 'Rekayasa Keselamatan',
+        'Bisnis Digital' => 'Bisnis Digital',
+    ],
+
+    'jurusan' => [
+        'JMTI' => 'JMTI',
+        'JTIP' => 'JTIP',
+        'JIKL' => 'JIKL',
+        'JSTPK' => 'JSTPK',
+        'JTSP' => 'JTSP',
     ],
     
     'status' => [

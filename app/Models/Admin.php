@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Models\E_surat;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
-class Sp_KP extends Model
+class Admin extends Model
 {
     use HasFactory;
 
-    protected $table = 'sp_kp';
-    protected $fillable = ['id_surat', 'tujuan', 'tempat_kp', 'surat_balasan', 'nomor_surat', 'tanggal_surat', 'mahasiswa', 'waktu_kp'];
-
-    public function surat(){
-        return $this->belongsTo(Surat::class);
-    }
+    protected $table = 'admin';
+    protected $fillable = ['id_users', 'no_induk_pegawai'];
 
     /*
     |------------------------------------------------------------------------------------
@@ -33,7 +30,9 @@ class Sp_KP extends Model
     | Relations
     |------------------------------------------------------------------------------------
     */
-
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     /*
     |------------------------------------------------------------------------------------
     | Scopes

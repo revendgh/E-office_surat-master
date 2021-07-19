@@ -10,7 +10,7 @@ class Surat_penelitian extends Model
     use HasFactory;
 
     protected $table = 'surat_penelitian';
-    protected $fillable = ['id_surat', 'instansi_penelitian', 'alamat_instansi', 'tempat_penelitian', 'tanggal_penelitian'];
+    protected $fillable = ['id_surat', 'tujuan', 'tempat_penelitian', 'tanggal_penelitian'];
 
     public function surat(){
         return $this->belongsTo(Surat::class);

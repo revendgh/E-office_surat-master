@@ -19,9 +19,8 @@ class CreateTableSpProposalKp extends Migration
             $table->foreign('id_surat')
                   ->references('id')
                   ->on('surat');
-            $table->string('tujuan_surat');
+            $table->text('tujuan_surat');
             $table->string('tempat_kp');
-            $table->string('alamat_kp');
             $table->text('mahasiswa');
             $table->string('lama_waktu');
             $table->string('jangka_waktu');
