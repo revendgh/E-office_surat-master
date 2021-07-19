@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\E_surat;
-use App\User;
+use App\Models\User;
 use App\Models\E_surat\Mahasiswa;
 use App\Models\E_surat\Sk_aktif_organisasi;
 use App\Models\E_surat\Sk_aktif_studi;
@@ -71,8 +71,8 @@ class Surat extends Model
         return $this->hasOne(Surat_rekomendasi_beasiswa::class, 'id_surat');
     }
 
-    public function users() {
-        return $this->belongsTo('App\User', 'id_users');
+    public function user() {
+        return $this->belongsTo(User::class, 'id_users');
     }
 
 

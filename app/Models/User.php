@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\E_surat\Surat;
+use App\Models\Mahasiswa;
 
 class User extends Authenticatable
 {
@@ -102,6 +104,9 @@ class User extends Authenticatable
     }
     public function rektor(){
         return $this->hasOne(Rektor::class, 'id_users');
+    }
+    public function surat(){
+        return $this->hasMany(Surat::class, 'id_users');
     }
 
 }

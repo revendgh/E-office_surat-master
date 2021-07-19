@@ -31,26 +31,8 @@
         <div class="form-group">
             <div class="peers ai-c jc-sb fxw-nw">
                 <div class="peer">
-                    <div class="checkbox checkbox-circle checkbox-info peers ai-c">
-                        <input type="checkbox" id="remember" name="remember" class="peer" {{ old('remember') ? 'checked' : '' }}>
-                        <label for="remember" class=" peers peer-greed js-sb ai-c">
-                            <span class="peer peer-greed">Remember Me</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="peer">
                     <button class="btn btn-primary">Login</button>
                 </div>
-            </div>
-        </div>
-        <div class="peers ai-c jc-sb fxw-nw">
-            <div class="peer">
-                <a class="btn btn-link" href="{{ route('password.request') }}">
-                    Forgot Your Password?
-                </a>
-            </div>
-            <div class="peer">
-                <a href="/register" class="btn btn-link">Create new account</a>
             </div>
         </div>
     </form>
