@@ -16,12 +16,19 @@ Route::group(['prefix' => ADMIN, 'as' => ADMIN . '.', 'middleware'=>['auth', 'Ro
 
 Route::group(['prefix' => AKADEMIK, 'as' => AKADEMIK . '.', 'middleware'=>['auth', 'Role:10']], function () {
     Route::get('/', 'Akademik\DashboardController@index')->name('dash');
+
     Route::get('surat/pengajuan', 'Akademik\SuratController@pengajuan')->name('surat.pengajuan');
     Route::get('surat/terverifikasi', 'Akademik\SuratController@terverifikasi')->name('surat.terverifikasi');
     Route::get('surat/diteruskan', 'Akademik\SuratController@diteruskan')->name('surat.diteruskan');
     Route::get('surat/ditolak', 'Akademik\SuratController@ditolak')->name('surat.ditolak');
     Route::get('surat/cetak', 'Akademik\SuratController@cetak')->name('surat.cetak');
-    Route::resource('surat', 'Mahasiswa\SuratController');
+
+    Route::get('surat/verifikasi/{id}', 'Akademik\SuratController@verifikasi')->name('surat.verifikasi');
+    Route::get('surat/teruskan/{id}', 'Akademik\SuratController@teruskan')->name('surat.teruskan');
+    Route::put('surat/tolak/{id}', 'Akademik\SuratController@tolak')->name('surat.tolak');
+    Route::put('surat/cetak/{id}', 'Akademik\SuratController@export')->name('surat.export');
+
+    Route::resource('surat', 'Akademik\SuratController');
 });
 
 Route::group(['prefix' => MAHASISWA, 'as' => MAHASISWA . '.', 'middleware'=>['auth', 'Role:1']], function () {
