@@ -56,7 +56,7 @@ class Surat extends Model
         return $this->hasOne(Sp_mmta::class, 'id_surat');
     }
     public function sp_proposalKP(){
-        return $this->hasOne(Sp_magang::class, 'id_surat');
+        return $this->hasOne(Sp_proposalKP::class, 'id_surat');
     }
     public function surat_peminjaman(){
         return $this->hasOne(Surat_peminjaman::class, 'id_surat');

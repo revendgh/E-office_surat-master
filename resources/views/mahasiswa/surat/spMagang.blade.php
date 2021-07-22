@@ -30,7 +30,7 @@
       
       <input type="hidden" name="id_users" value="{{ Auth::user()->id}}">
       <input type="hidden" name="status_surat" value="{{ 0 }}">
-      <input type="hidden" name="nama_surat" value="{{ 'Surat Permohonan Magang' }}">
+      <input type="hidden" name="nama_surat" value="{{ 'Surat Pengantar Magang' }}">
 
       <!-- Card Header - Accordion -->
       <a href="#axe3" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="axe3">
