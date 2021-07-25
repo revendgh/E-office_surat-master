@@ -1,4 +1,4 @@
-@extends('akademik.default')
+@extends('jurusan.default')
 
 @section('css')
 <style>
@@ -75,9 +75,16 @@
 
     <div class="col-md-9">
     <div class="card shadow mb-4">
-      @if($surat->status_surat == 0)
+      @if($surat->status_surat == 4)
       {!! Form::model($surat, [
-          'route'  => [ AKADEMIK . '.surat.tolak', $surat->id ],
+          'route'  => [ JURUSAN . '.surat.tolak', $surat->id ],
+          'method' => 'put',
+          'files'  => true
+        ])
+      !!}
+      @elseif($surat->status_surat == 6 || $surat->status_surat == 7)
+      {!! Form::model($surat, [
+          'route'  => [ JURUSAN . '.surat.export', $surat->id ],
           'method' => 'put',
           'files'  => true
         ])
@@ -91,6 +98,26 @@
       <!-- Card Content - Collapse -->
       <div class="collapse show" id="axe3">
         <div class="card-body">
+
+          @if($surat->status_surat == 6 || $surat->status_surat == 7)
+          <div class="form-group">
+            <div class="form-group col-md-12">
+              <label for="no_surat">Nomor Surat</label>
+              <div class="input-group mb-3">
+              @if($surat->status_surat == 6)
+                <input id="no_surat" type="text" class="form-control @error('no_surat') is-invalid @enderror" name="no_surat" autocomplete="no_surat" required>
+              @elseif($surat->status_surat == 7)
+                <input id="no_surat" type="text" class="form-control @error('no_surat') is-invalid @enderror" name="no_surat" autocomplete="no_surat" value="{{ $surat->no_surat}}" required>
+              @endif
+              </div>
+              @error('no_surat')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+          </div>
+          @endif
 
           <div class="form-group">
             <div class="form-group col-md-12">
@@ -208,10 +235,35 @@
             </div>
           </div>
 
-        @if($surat->status_surat == 0)
+          @if($surat->status_surat == 6 || $surat->status_surat == 7)
+          <div class="form-group">
+            <div class="form-group col-md-12">
+              <label for="isi_perjanjian">Isi Perjanjian</label>
+              <div class="input-group mb-3">
+              @if($surat->status_surat == 6)
+                <textarea id="isi_perjanjian" type="text" class="form-control @error('isi_perjanjian') is-invalid @enderror ckeditor" rows="30" name="isi_perjanjian" autocomplete="isi_perjanjian">
+                  <p>Dinyatakan dapat memulai mengerjakan Tugas Akhirnya di bawah bimbingan Dosen yang telah ditetapkan.</p><p>Proses pembimbingan berlaku maksimal selama dua semester, terhitung mulai tanggal&nbsp;18 Februari 2020 sampai dengan&nbsp;batas akhir Yudisium 2019/2020.</p><p>Apabila Tugas Akhir tersebut tidak dapat diselesaikan dalam waktu yang telah ditentukan, maka:</p><ol><li>Bila kemajuan penyusunan Tugas Akhir telah mencapai ≥ 75% akan diberikan perpanjangan waktu satu semester;</li><li>Bila kemajuan penyusunan Tugas Akhir&lt; 75%, diharuskan membuat Proposal Tugas Akhir dengan judul yang baru dan dipresentasikan di depan Team Dosen Penguji.</li></ol>
+
+                </textarea>
+              @elseif($surat->status_surat == 7)
+                <textarea id="isi_perjanjian" type="text" class="form-control @error('isi_perjanjian') is-invalid @enderror ckeditor" rows="30" name="isi_perjanjian" autocomplete="isi_perjanjian">{{ $surat->sp_mmta->isi_perjanjian }}</textarea>
+              @endif
+              </div>
+              <small id="isi_perjanjian" class="form-text text-muted">Tujuan surat</small>
+              @error('no_surat')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+          </div>
+          @endif
+
+
+        @if($surat->status_surat == 4)
         <div class="row pl-3 pr-3">
           <div class="col-sm-8">
-              <a href="{{ route(AKADEMIK . '.surat.pengajuan') }}" class="btn btn-lg btn-primary">Kembali</a>
+              <a href="{{ route(JURUSAN . '.surat.pengajuan') }}" class="btn btn-lg btn-primary">Kembali</a>
           </div>
           <div class="col-sm-2">
               <button type="button" class="btn btn-lg btn-danger form-control" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Tolak</button>
@@ -241,23 +293,39 @@
               </div>      
           </div>
           <div class="col-sm-2" style="text-align: right">
-              <a href="{{ route(AKADEMIK . '.surat.teruskan', $surat->id) }}" class="btn btn-lg btn-success form-control">Teruskan</a>
+              <a href="{{ route(JURUSAN . '.surat.verifikasi', $surat->id) }}" class="btn btn-lg btn-success form-control">Verifikasi</a>
           </div>
         </div>
-        @elseif($surat->status_surat == 1)
+        @elseif($surat->status_surat == 5)
         <div class="row pl-3 pr-3">
           <div class="col-sm-8">
-              <a href="{{ route(AKADEMIK . '.surat.ditolak') }}" class="btn btn-lg btn-primary">Kembali</a>
+              <a href="{{ route(JURUSAN . '.surat.ditolak') }}" class="btn btn-lg btn-primary">Kembali</a>
           </div>
         </div>
-        @elseif($surat->status_surat == 4)
+        @elseif($surat->status_surat == 6)
         <div class="row pl-3 pr-3">
           <div class="col-sm-8">
-              <a href="{{ route(AKADEMIK . '.surat.diteruskan') }}" class="btn btn-lg btn-primary">Kembali</a>
+              <a href="{{ route(JURUSAN . '.surat.terverifikasi') }}" class="btn btn-lg btn-primary">Kembali</a>
+          </div>
+          <div class="col-sm-4" style="text-align: right">
+              <button type="submit"class="btn btn-lg btn-success pull-right">
+                  {{ __('Cetak') }}
+              </button>
+          </div>
+        </div>
+        @elseif($surat->status_surat == 7)
+        <div class="row pl-3 pr-3">
+          <div class="col-sm-8">
+              <a href="{{ route(JURUSAN . '.surat.cetak') }}" class="btn btn-lg btn-primary">Kembali</a>
+          </div>
+          <div class="col-sm-4" style="text-align: right">
+              <button type="submit"class="btn btn-lg btn-success pull-right">
+                  {{ __('Cetak') }}
+              </button>
           </div>
         </div>
         @endif
-        
+
         {!! Form::close() !!}
 
         </div>
@@ -287,10 +355,7 @@
           'redo'
         ]
       },
-        } ).then(editor => { 
-          console.log( editor ); 
-          editor.isReadOnly = true; // make the editor read-only right after initialization
-     } )
+        } )
         .catch( error => {
             console.error( error );
         } );

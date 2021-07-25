@@ -57,7 +57,7 @@
             </div>
 
             <div class="form-group col-md-4">
-              <label for="prodi">NIM</label>
+              <label for="prodi">Program Studi</label>
               <div class="input-group mb-3">
               <input id="prodi" type="text" class="form-control @error('prodi') is-invalid @enderror" name="prodi" autocomplete="prodi" value="{{ $surat->user->mahasiswa->prodi}}" readonly>
               </div>

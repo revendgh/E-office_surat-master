@@ -1,7 +1,7 @@
-@extends('mahasiswa.default')
+@extends('jurusan.default')
 
 @section('page-header')
-    Daftar pengajuan <small>surat</small>
+    Daftar Surat <small>dicetak</small>
 @endsection
 
 @section('content')
@@ -37,14 +37,14 @@
                     <?php $no++ ;?>
                         <tr>
                             <td>{{ $no }}</td>
-                            <td>{{ $item->user->nama</td>
-                            <td>{{ $item->user->mahasiswa->nim</td>
+                            <td>{{ $item->user->name }}</td>
+                            <td>{{ $item->user->mahasiswa->nim }}</td>
                             <td>{{ $item->nama_surat }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <a href="{{ route(AKADEMIK . '.surat.show', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm">
+                                    <a href="{{ route(JURUSAN . '.surat.show', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm">
                                     <span class="ti-pencil"></span></a></li>
                             </ul>
                         </td>

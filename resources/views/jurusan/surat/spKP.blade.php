@@ -1,4 +1,4 @@
-@extends('akademik.default')
+@extends('jurusan.default')
 
 @section('css')
 <style>
@@ -16,7 +16,7 @@
 @endsection
 
 @section('page-header')
-    Lihat<small> Surat Melanjutkan Penelitian</small>
+    Lihat<small> Surat Pengantar KP </small>
 @endsection
 
 @section('content')
@@ -76,9 +76,16 @@
 
     <div class="col-md-9">
     <div class="card shadow mb-4">
-      @if($surat->status_surat == 0)
+      @if($surat->status_surat == 4)
       {!! Form::model($surat, [
-          'route'  => [ AKADEMIK . '.surat.tolak', $surat->id ],
+          'route'  => [ JURUSAN . '.surat.tolak', $surat->id ],
+          'method' => 'put',
+          'files'  => true
+        ])
+      !!}
+      @elseif($surat->status_surat == 6 || $surat->status_surat == 7)
+      {!! Form::model($surat, [
+          'route'  => [ JURUSAN . '.surat.export', $surat->id ],
           'method' => 'put',
           'files'  => true
         ])
@@ -87,17 +94,37 @@
 
       <!-- Card Header - Accordion -->
       <a href="#axe3" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="axe3">
-        <h6 class="m-0 font-weight-bold text-info">Data Surat Melanjutkan Penelitian</h6>
+        <h6 class="m-0 font-weight-bold text-info">Data Surat Pengantar KP</h6>
       </a>
       <!-- Card Content - Collapse -->
       <div class="collapse show" id="axe3">
         <div class="card-body">
 
+          @if($surat->status_surat == 6 || $surat->status_surat == 7)
+          <div class="form-group">
+            <div class="form-group col-md-12">
+              <label for="no_surat">Nomor Surat</label>
+              <div class="input-group mb-3">
+              @if($surat->status_surat == 6)
+                <input id="no_surat" type="text" class="form-control @error('no_surat') is-invalid @enderror" name="no_surat" autocomplete="no_surat" required>
+              @elseif($surat->status_surat == 7)
+                <input id="no_surat" type="text" class="form-control @error('no_surat') is-invalid @enderror" name="no_surat" autocomplete="no_surat" value="{{ $surat->no_surat}}" required>
+              @endif
+              </div>
+              @error('no_surat')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+          </div>
+          @endif
+          
           <div class="form-group">
             <div class="form-group col-md-12">
               <label for="tujuan">Tujuan Surat</label>
               <div class="input-group mb-3">
-              <textarea id="tujuan" type="text" class="form-control @error('tujuan') is-invalid @enderror ckeditor" rows="30" name="tujuan" autocomplete="tujuan">{{ $surat->surat_penelitian->tujuan}}</textarea>
+              <textarea id="tujuan" type="text" class="form-control @error('tujuan') is-invalid @enderror ckeditor" rows="30" name="tujuan" autocomplete="tujuan">{{ $surat->sp_kp->tujuan }}</textarea>
               </div>
               <small id="tujuan" class="form-text text-muted">Tujuan surat</small>
               @error('tujuan')
@@ -110,12 +137,59 @@
 
           <div class="form-group">
             <div class="form-group col-md-12">
-              <label for="tempat_penelitian">Tempat Penelitian</label>
+              <label for="tempat_kp">Tempat KP</label>
               <div class="input-group mb-3">
-              <input id="tempat_penelitian" type="text" class="form-control @error('tempat_penelitian') is-invalid @enderror" name="tempat_penelitian" autocomplete="tempat_penelitian" value="{{ $surat->surat_penelitian->tempat_penelitian}}" readonly>
+              <input id="tempat_kp" type="text" class="form-control @error('tempat_kp') is-invalid @enderror" name="tempat_kp" autocomplete="tempat_kp" value="{{ $surat->sp_kp->tempat_kp }}" readonly>
               </div>
-              <small id="tempat_penelitian" class="form-text text-muted">Tempat penelitian, contoh : Subbagian Umum Dinas Perpustakaan dan Arsip Kota Balikpapan</small>
-              @error('tempat_penelitian')
+              <small id="tempat_kp" class="form-text text-muted">Contoh : Dinas Kesehatan Kota Balikpapan</small>
+              @error('tempat_kp')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-group col-md-8">
+              <label for="surat_balasan">Úpload Surat Balasan</label>
+              <div class="input-group mb-3">
+              <input id="surat_balasan" type="file" class="form-control @error('surat_balasan') is-invalid @enderror" name="surat_balasan" autocomplete="surat_balasan" readonly>
+              <div class="input-group-append">
+                <a href="{{url('storage/KP/'.$surat->sp_kp->surat_balasan )}}"class="btn btn-success" download>Download</a>
+              </div>
+              </div>
+              <small id="surat_balasan" class="form-text text-muted">File scan surat balasan</small>
+              <small id="surat_balasan" class="form-text text-muted">hanya file pdf, max 2 Mb </small>
+              @error('gambar')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+          </div>
+
+          <div class="form-group row pl-3">
+            <div class="form-group col-md-6">
+              <label for="nomor_surat">No Surat</label>
+              <div class="input-group mb-3">
+              <input id="nomor_surat" type="text" class="form-control @error('nomor_surat') is-invalid @enderror" name="nomor_surat" autocomplete="nomor_surat" value="{{ $surat->sp_kp->nomor_surat }}" readonly>
+              </div>
+              <small id="nomor_surat" class="form-text text-muted">Contoh : KL.02.02/ 005/KBPN/IV/2020</small>
+              @error('nomor_surat')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="tanggal_surat">Tanggal Surat</label>
+              <div class="input-group mb-3">
+              <input id="tanggal_surat" type="text" class="form-control @error('tanggal_surat') is-invalid @enderror" name="tanggal_surat" autocomplete="tanggal_surat" value="{{ $surat->sp_kp->tanggal_surat }}" readonly>
+              </div>
+              <small id="tanggal_surat" class="form-text text-muted">Contoh : 21 Mei 2020</small>
+              @error('tanggal_surat')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
@@ -125,12 +199,12 @@
 
           <div class="form-group">
             <div class="form-group col-md-12">
-              <label for="tanggal_penelitian">Tanggal Penelitian</label>
+              <label for="mahasiswa">Mahasiswa KP</label>
               <div class="input-group mb-3">
-              <input id="tanggal_penelitian" type="text" class="form-control @error('tanggal_penelitian') is-invalid @enderror" name="tanggal_penelitian" autocomplete="tanggal_penelitian" value="{{ $surat->surat_penelitian->tanggal_penelitian }}" readonly>
+              <textarea id="mahasiswa" type="text" class="form-control @error('mahasiswa') is-invalid @enderror ckeditor" rows="30" name="mahasiswa" autocomplete="mahasiswa">{{ $surat->sp_kp->mahasiswa }}</textarea>
               </div>
-              <small id="tanggal_penelitian" class="form-text text-muted">contoh : 15 Juni 2020 sampai selesai</small>
-              @error('tanggal_penelitian')
+              <small id="mahasiswa" class="form-text text-muted">Nama dan nim mahasiswa </small>
+              @error('mahasiswa')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
@@ -138,10 +212,26 @@
             </div>
           </div>
 
-        @if($surat->status_surat == 0)
+          <div class="form-group">
+            <div class="form-group col-md-12">
+              <label for="waktu_kp">Jangka Waktu KP</label>
+              <div class="input-group mb-3">
+              <input id="waktu_kp" type="text" class="form-control @error('waktu_kp') is-invalid @enderror" name="waktu_kp" autocomplete="waktu_kp" value="{{ $surat->sp_kp->waktu_kp }}" readonly>
+              </div>
+              <small id="waktu_kp" class="form-text text-muted">Contoh : 1 Juni 2020 s.d 31 Juli 2020 *sesuaikan format ini</small>
+              @error('waktu_kp')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+          </div>
+
+
+        @if($surat->status_surat == 4)
         <div class="row pl-3 pr-3">
           <div class="col-sm-8">
-              <a href="{{ route(AKADEMIK . '.surat.pengajuan') }}" class="btn btn-lg btn-primary">Kembali</a>
+              <a href="{{ route(JURUSAN . '.surat.pengajuan') }}" class="btn btn-lg btn-primary">Kembali</a>
           </div>
           <div class="col-sm-2">
               <button type="button" class="btn btn-lg btn-danger form-control" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Tolak</button>
@@ -171,23 +261,39 @@
               </div>      
           </div>
           <div class="col-sm-2" style="text-align: right">
-              <a href="{{ route(AKADEMIK . '.surat.teruskan', $surat->id) }}" class="btn btn-lg btn-success form-control">Teruskan</a>
+              <a href="{{ route(JURUSAN . '.surat.verifikasi', $surat->id) }}" class="btn btn-lg btn-success form-control">Verifikasi</a>
           </div>
         </div>
-        @elseif($surat->status_surat == 1)
+        @elseif($surat->status_surat == 5)
         <div class="row pl-3 pr-3">
           <div class="col-sm-8">
-              <a href="{{ route(AKADEMIK . '.surat.ditolak') }}" class="btn btn-lg btn-primary">Kembali</a>
+              <a href="{{ route(JURUSAN . '.surat.ditolak') }}" class="btn btn-lg btn-primary">Kembali</a>
           </div>
         </div>
-        @elseif($surat->status_surat == 4)
+        @elseif($surat->status_surat == 6)
         <div class="row pl-3 pr-3">
           <div class="col-sm-8">
-              <a href="{{ route(AKADEMIK . '.surat.diteruskan') }}" class="btn btn-lg btn-primary">Kembali</a>
+              <a href="{{ route(JURUSAN . '.surat.terverifikasi') }}" class="btn btn-lg btn-primary">Kembali</a>
+          </div>
+          <div class="col-sm-4" style="text-align: right">
+              <button type="submit"class="btn btn-lg btn-success pull-right">
+                  {{ __('Cetak') }}
+              </button>
+          </div>
+        </div>
+        @elseif($surat->status_surat == 7)
+        <div class="row pl-3 pr-3">
+          <div class="col-sm-8">
+              <a href="{{ route(JURUSAN . '.surat.cetak') }}" class="btn btn-lg btn-primary">Kembali</a>
+          </div>
+          <div class="col-sm-4" style="text-align: right">
+              <button type="submit"class="btn btn-lg btn-success pull-right">
+                  {{ __('Cetak') }}
+              </button>
           </div>
         </div>
         @endif
-        
+
         {!! Form::close() !!}
 
         </div>

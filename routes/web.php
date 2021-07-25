@@ -70,8 +70,18 @@ Route::group(['prefix' => MAHASISWA, 'as' => MAHASISWA . '.', 'middleware'=>['au
 });
 
 Route::group(['prefix' => JURUSAN, 'as' => JURUSAN . '.', 'middleware'=>['auth', 'Role:11']], function () {
-    Route::get('/', 'DashboardController@index')->name('dash');
-    Route::resource('users', 'UserController');
+    Route::get('/', 'Jurusan\DashboardController@index')->name('dash');
+
+    Route::get('surat/pengajuan', 'Jurusan\SuratController@pengajuan')->name('surat.pengajuan');
+    Route::get('surat/terverifikasi', 'Jurusan\SuratController@terverifikasi')->name('surat.terverifikasi');
+    Route::get('surat/ditolak', 'Jurusan\SuratController@ditolak')->name('surat.ditolak');
+    Route::get('surat/cetak', 'Jurusan\SuratController@cetak')->name('surat.cetak');
+
+    Route::get('surat/verifikasi/{id}', 'Jurusan\SuratController@verifikasi')->name('surat.verifikasi');
+    Route::put('surat/tolak/{id}', 'Jurusan\SuratController@tolak')->name('surat.tolak');
+    Route::put('surat/cetak/{id}', 'Jurusan\SuratController@export')->name('surat.export');
+
+    Route::resource('surat', 'Jurusan\SuratController');
 });
 
 Route::get('/', function () {
