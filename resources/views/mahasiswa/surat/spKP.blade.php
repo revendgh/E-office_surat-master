@@ -79,7 +79,7 @@
               </div>
               <small id="surat_balasan" class="form-text text-muted">File scan surat balasan</small>
               <small id="surat_balasan" class="form-text text-muted">hanya file pdf, max 2 Mb </small>
-              @error('gambar')
+              @error('surat_balasan')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>

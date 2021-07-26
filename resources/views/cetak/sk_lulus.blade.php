@@ -27,17 +27,17 @@
                 <tr>
                     <td style="width:10%">Nama</td>
                     <td style="width:2%">:</td>
-                    <td style="width:88%">Aries Rohiyanto</td>
+                    <td style="width:88%">{{ $pejabat->user->name }}</td>
                 </tr>
                 <tr>
                     <td>NIP</td>
                     <td>:</td>
-                    <td>197004211998021001</td>
+                    <td>{{ $pejabat->user->wakil_rektor->no_induk_pegawai }}</td>
                 </tr>
                 <tr>
                     <td>Jabatan</td>
                     <td>:</td>
-                    <td>Kasubbag Akademik dan Kemahasiswaan ITK</td>
+                    <td>{{ $pejabat->user->wakil_rektor->jabatan }}</td>
                 </tr>
             </table>
         </div>

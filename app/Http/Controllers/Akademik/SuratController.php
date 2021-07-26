@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Akademik;
 
 use App\Http\Controllers\Controller;
 use App\Models\E_surat\Surat;
+use App\Models\Pengaturan;
 use Str;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -80,6 +81,7 @@ class SuratController extends Controller
             $surat->save();
         }
 
+        $pejabat = Pengaturan::where('jabatan', 'Wakil Rektor Akademik')->first();
         
         $tanggal = Carbon::today()->format('d-m-Y');
         $hari = substr($tanggal,0,2);
@@ -103,23 +105,23 @@ class SuratController extends Controller
 
         $tanggal = $hari.' '.$nama[$bulan].' '.$tahun;
         if ($surat->nama_surat == 'SK Aktif Studi') {
-            $pdf = PDF::loadview('cetak.sk_aktif_studi',['surat'=>$surat, 'tanggal'=>$tanggal]);
+            $pdf = PDF::loadview('cetak.sk_aktif_studi',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
             return $pdf->download('SK Aktif Studi '.$surat->user->mahasiswa->nim. '.pdf');
         }
         elseif ($surat->nama_surat == 'SK Aktif Organisasi') {
-            $pdf = PDF::loadview('cetak.sk_aktif_organisasi',['surat'=>$surat, 'tanggal'=>$tanggal]);
+            $pdf = PDF::loadview('cetak.sk_aktif_organisasi',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
             return $pdf->download('SK Aktif Organisasi '.$surat->user->mahasiswa->nim. '.pdf');
         }
         elseif ($surat->nama_surat == 'SK Pernah Studi') {
-            $pdf = PDF::loadview('cetak.sk_pernah_studi',['surat'=>$surat, 'tanggal'=>$tanggal]);
+            $pdf = PDF::loadview('cetak.sk_pernah_studi',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
             return $pdf->download('SK Pernah Studi '.$surat->user->mahasiswa->nim. '.pdf');
         }
         elseif ($surat->nama_surat == 'SK Lulus') {
-            $pdf = PDF::loadview('cetak.sk_lulus',['surat'=>$surat, 'tanggal'=>$tanggal]);
+            $pdf = PDF::loadview('cetak.sk_lulus',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
             return $pdf->download('SK Lulus '.$surat->user->mahasiswa->nim. '.pdf');
         }
         elseif ($surat->nama_surat == 'SK Pengganti KTM') {
-            $pdf = PDF::loadview('cetak.sk_pengganti_ktm',['surat'=>$surat, 'tanggal'=>$tanggal]);
+            $pdf = PDF::loadview('cetak.sk_pengganti_ktm',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
             return $pdf->download('SK Pengganti KTM '.$surat->user->mahasiswa->nim. '.pdf');
         }
     }

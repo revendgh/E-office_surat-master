@@ -19,3 +19,11 @@
         <span class="title">Users</span>
     </a>
 </li>
+<li class="nav-item">
+    <a class="sidebar-link {{ Str::startsWith($route, ADMIN . '.pengaturan') ? 'actived' : '' }}" href="{{ route(ADMIN . '.pengaturan.index') }}">
+        <span class="icon-holder">
+            <i class="c-red-300 ti-settings"></i>
+        </span>
+        <span class="title">Pengaturan</span>
+    </a>
+</li>

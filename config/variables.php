@@ -50,6 +50,15 @@ return [
         'JSTPK' => 'JSTPK',
         'JTSP' => 'JTSP',
     ],
+
+    'jabatan' => [
+        'Wakil Rektor Akademik' => 'Wakil Rektor Akademik',
+        'Ketua Jurusan JMTI' => 'Ketua Jurusan JMTI',
+        'Ketua Jurusan JTIP' => 'Ketua Jurusan JTIP',
+        'Ketua Jurusan JIKL' => 'Ketua Jurusan JIKL',
+        'Ketua Jurusan JSTPK' => 'Ketua Jurusan JSTPK',
+        'Ketua Jurusan JTSP' => 'Ketua Jurusan JTSP',
+    ],
     
     'status' => [
         1 => 'Active',

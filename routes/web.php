@@ -12,6 +12,7 @@ Auth::routes(['register' => false]);
 Route::group(['prefix' => ADMIN, 'as' => ADMIN . '.', 'middleware'=>['auth', 'Role:100']], function () {
     Route::get('/', 'DashboardController@index')->name('dash');
     Route::resource('users', 'UserController');
+    Route::resource('pengaturan', 'PengaturanController');
 });
 
 Route::group(['prefix' => AKADEMIK, 'as' => AKADEMIK . '.', 'middleware'=>['auth', 'Role:10']], function () {
