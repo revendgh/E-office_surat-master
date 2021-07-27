@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Jurusan;
 
 use App\Http\Controllers\Controller;
 use App\Models\E_surat\Surat;
+use App\Models\Pengaturan;
 use Str;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use PDF;
 use Auth;
 
 class SuratController extends Controller
@@ -82,6 +85,8 @@ class SuratController extends Controller
             $surat->sp_mmta->isi_perjanjian = $request->isi_perjanjian;
             $surat->sp_mmta->save();
         }
+
+        $pejabat = Pengaturan::where('jabatan', 'KETUA JURUSAN '.Auth::user()->tendik_jurusan->jurusan)->first();
         
         $tanggal = Carbon::today()->format('d-m-Y');
         $hari = substr($tanggal,0,2);
@@ -104,22 +109,46 @@ class SuratController extends Controller
         ];
 
         $tanggal = $hari.' '.$nama[$bulan].' '.$tahun;
-        if ($surat->nama_surat == 'SK Aktif Studi') {
-            $pdf = PDF::loadview('cetak.sk_aktif_studi',['surat'=>$surat, 'tanggal'=>$tanggal]);
+        if ($surat->nama_surat == 'Surat Rekomendasi Beasiswa') {
+            $pdf = PDF::loadview('cetak.surat_rekomendasi_beasiswa',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('Surat Rekomendasi Beasiswa '.$surat->user->mahasiswa->nim. '.pdf');
         }
-        elseif ($surat->nama_surat == 'SK Aktif Organisasi') {
-            $pdf = PDF::loadview('cetak.sk_aktif_organisasi',['surat'=>$surat, 'tanggal'=>$tanggal]);
+        elseif ($surat->nama_surat == 'Surat Permohonan Data') {
+            $pdf = PDF::loadview('cetak.sp_data',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('Surat Permohonan Data '.$surat->user->mahasiswa->nim. '.pdf');
         }
-        elseif ($surat->nama_surat == 'SK Pernah Studi') {
-            $pdf = PDF::loadview('cetak.sk_pernah_studi',['surat'=>$surat, 'tanggal'=>$tanggal]);
+        elseif ($surat->nama_surat == 'Surat Pengantar Magang') {
+            $pdf = PDF::loadview('cetak.sp_magang',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('Surat Pengantar Magang '.$surat->user->mahasiswa->nim. '.pdf');
         }
-        elseif ($surat->nama_surat == 'SK Lulus') {
-            $pdf = PDF::loadview('cetak.sk_lulus',['surat'=>$surat, 'tanggal'=>$tanggal]);
+        elseif ($surat->nama_surat == 'SK Perjalanan') {
+            $pdf = PDF::loadview('cetak.surat_perjalanan',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('SK Perjalanan '.$surat->user->mahasiswa->nim. '.pdf');
         }
-        elseif ($surat->nama_surat == 'SK Pengganti KTM') {
-            $pdf = PDF::loadview('cetak.sk_pengganti_ktm',['surat'=>$surat, 'tanggal'=>$tanggal]);
+        elseif ($surat->nama_surat == 'Surat Keterangan Melaksanakan TA') {
+            $pdf = PDF::loadview('cetak.sk_ta',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('Surat Keterangan Melaksanakan TA '.$surat->user->mahasiswa->nim. '.pdf');
         }
-        return $pdf->download('surat-pdf');
+        elseif ($surat->nama_surat == 'Surat Peminjaman') {
+            $pdf = PDF::loadview('cetak.surat_peminjaman',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('Surat Peminjaman '.$surat->user->mahasiswa->nim. '.pdf');
+        }
+        elseif ($surat->nama_surat == 'SP-MMTA') {
+            $pdf = PDF::loadview('cetak.sp_mmta',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('SP-MMTA '.$surat->user->mahasiswa->nim. '.pdf');
+        }
+        elseif ($surat->nama_surat == 'Surat Pengantar Proposal KP') {
+            $pdf = PDF::loadview('cetak.sp_proposal_kp',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('Surat Pengantar Proposal KP '.$surat->user->mahasiswa->nim. '.pdf');
+        }
+        elseif ($surat->nama_surat == 'Surat Melanjutkan Penelitian') {
+            $pdf = PDF::loadview('cetak.surat_penelitian',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('Surat Melanjutkan Penelitian '.$surat->user->mahasiswa->nim. '.pdf');
+        }
+        elseif ($surat->nama_surat == 'Surat Pengantar Proposal KP') {
+            $pdf = PDF::loadview('cetak.sp_kp',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
+            return $pdf->download('Surat Pengantar Proposal KP '.$surat->user->mahasiswa->nim. '.pdf');
+        }
     }
 
     public function show($id)
