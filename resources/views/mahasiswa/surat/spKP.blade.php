@@ -45,7 +45,7 @@
             <div class="form-group col-md-12">
               <label for="tujuan">Tujuan Surat</label>
               <div class="input-group mb-3">
-              <textarea id="tujuan" type="text" class="form-control @error('tujuan') is-invalid @enderror ckeditor" rows="30" name="tujuan" autocomplete="tujuan">Contoh : <br>Yth. Kepala Dinas Perpustakaan dan Arsip Kota Balikpapan<br>Jl. Kapten Piere Tendean No.1 Gunung Ilir. Kec. Balikpapan Tengah, <br>Kota Balikpapan, Kalimantan Timur 76113</textarea>
+              <textarea id="tujuan" type="text" class="form-control @error('tujuan') is-invalid @enderror ckeditor" rows="30" name="tujuan" autocomplete="tujuan">Contoh : <br>Kepala Dinas Perpustakaan dan Arsip Kota Balikpapan<br>Jl. Kapten Piere Tendean No.1 Gunung Ilir. Kec. Balikpapan Tengah, <br>Kota Balikpapan, Kalimantan Timur 76113</textarea>
               </div>
               <small id="tujuan" class="form-text text-muted">Tujuan surat</small>
               @error('tujuan')

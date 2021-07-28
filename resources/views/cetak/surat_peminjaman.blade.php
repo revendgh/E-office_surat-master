@@ -18,20 +18,14 @@
                 <tr>
                     <td>Perihal</td>
                     <td>:</td>
-                    <td>Permohonan Pengambilan Data</td>
+                    <td>Peminjaman {{ strtolower($surat->surat_peminjaman->objek) }}</td>
                 </tr>
             </table>
         </div>
     </div><br><br>
     <div class="row">
-        <div class="col">
-            <table width="100%">
-                <tr>
-                    <td style="width:10%">Yth</td>
-                    <td style="width:2%">:</td>
-                    <td style="width:88%">{{ $surat->sk_data->tujuan }}</td>
-                </tr>
-            </table>
+        <div class="col text-justify">
+            <?php print_r($surat->surat_peminjaman->tujuan_surat) ?>
         </div>
     </div>
     <br><br>
@@ -39,51 +33,49 @@
 
     <div class="row">
         <div class="col text-justify">
-            Dengan hormat, disampaikan kepada Bapak/ Ibu bahwa mahasiswa Program Studi {{ $surat->user->mahasiswa->prodi }} {{ $pejabat->user->unit_kerja->unit }} di bawah ini :
+            Dengan hormat,<br>
+            Sehubungan dengan kegiatan Tugas Akhir Mahasiswa Program Studi {{ $surat->user->mahasiswa->prodi }}, maka dengan ini Ketua {{ $pejabat->user->unit_kerja->unit }} menjelaskan :
         </div>
     </div>
-    <br>
+    <br><br>
 
-    <!-- DATA MAHASISWA INDIVIDU-->
-    <div class="row" style="margin-left:50px">
+    <div class="row" style="margin-left:40px">
         <div class="col">
             <table width="100%">
-
                 <tr>
-                    <td style="width:25%">Nama</td>
+                    <td style="width:25%">Nama/NIM</td>
                     <td style="width:2%">:</td>
-                    <td style="width:73%">{{ $surat->user->name }}</td>
+                    <td style="width:73%">{{ $surat->user->name }}/{{ $surat->user->mahasiswa->nim }}</td>
                 </tr>
                 <tr>
-                    <td>NIM</td>
+                    <td>Tanggal</td>
                     <td>:</td>
-                    <td>{{ $surat->user->mahasiswa->nim }}</td>
+                    <td>{{ $surat->surat_peminjaman->tanggal_peminjaman }}</td>
                 </tr>
                 <tr>
-                    <td>Judul Tugas Akhir</td>
+                    <td>Waktu</td>
                     <td>:</td>
-                    <td>{{ $surat->sk_data->judul }}</td>
+                    <td>{{ $surat->surat_peminjaman->waktu_peminjaman }}</td>
                 </tr>
                 <tr>
-                    <td>CP Mahasiswa</td>
+                    <td>Tujuan</td>
                     <td>:</td>
-                    <td>{{ $surat->sk_data->contact_person }}</td>
+                    <td>{{ $surat->surat_peminjaman->tujuan }}</td>
                 </tr>
             </table>
-        </div>
-    </div>
-    <br>
-    <!-- END DATA MAHASISWA INDIVIDU-->
-
-    <div class="row">
-        <div class="col text-justify">
-            bermaksud melakukan pengambilan data untuk melakukan penelitian tugas akhir. Adapun data yang dibutuhkan yaitu : <?php print_r($surat->sk_data->data) ?> Untuk maksud di atas, dimohon kesediaan Bapak/ Ibu agar dapat mengizinkan mahasiswa kami untuk memperoleh data yang diperlukan dalam rangka penyelesaian tugas akhir. 
         </div>
     </div>
     <br><br>
     <div class="row">
         <div class="col text-justify">
-            Demikian surat permohonan ini, atas bantuan dan kerjasamanya disampaikan terima kasih.
+            Bermaksud untuk meminjam <b>{{ $surat->surat_peminjaman->objek }}</b> sebagai penunjang pengambilan data Tugas Akhir.
+        </div>
+    </div>
+    <br><br>
+
+    <div class="row">
+        <div class="col text-justify">
+            Demikian surat ini kami sampaikan. Atas perhatian dan kerjasamanya kami ucapkan terima kasih.
         </div>
     </div>
     <br><br>

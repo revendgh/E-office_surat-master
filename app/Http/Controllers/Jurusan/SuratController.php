@@ -145,9 +145,9 @@ class SuratController extends Controller
             $pdf = PDF::loadview('cetak.surat_penelitian',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
             return $pdf->download('Surat Melanjutkan Penelitian '.$surat->user->mahasiswa->nim. '.pdf');
         }
-        elseif ($surat->nama_surat == 'Surat Pengantar Proposal KP') {
+        elseif ($surat->nama_surat == 'Surat Pengantar KP') {
             $pdf = PDF::loadview('cetak.sp_kp',['surat'=>$surat, 'tanggal'=>$tanggal, 'pejabat'=>$pejabat]);
-            return $pdf->download('Surat Pengantar Proposal KP '.$surat->user->mahasiswa->nim. '.pdf');
+            return $pdf->download('Surat Pengantar KP '.$surat->user->mahasiswa->nim. '.pdf');
         }
     }
 

@@ -1,7 +1,11 @@
         <!-- TTD -->
         <div class="row">
             <div class="col justify-content-end">
+                @if($surat->nama_surat == "SP-MMTA")
+                <table width="280px" align="right" style="font-size: 90%;">
+                @else
                 <table width="280px" align="right">
+                @endif
                     <tr>
                         <img src="{{public_path().'/storage/ttd_stempel/'.$pejabat->stempel}}" style="z-index: -10; top: -10px; right: 220px; position: absolute;" width="150px" height="150px;"><br>
                         <td style="">
