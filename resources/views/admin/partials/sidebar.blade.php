@@ -8,11 +8,11 @@
 						<div class="peers ai-c fxw-nw">
 							<div class="peer">
 								<div class="logo">
-									<img src="/images/logo.png" alt="">
+									<img src="{{ asset('Logo.png') }}" style="border-radius: 50%;height: 4rem;width: 7.5rem;object-fit: contain;" alt="">
 								</div>
 							</div>
 							<div class="peer peer-greed">
-								<h5 class="lh-1 mB-0 logo-text">Laradminator</h5>
+								<h5 class="lh-1 mB-0 logo-text">SISUKMA</h5>
 							</div>
 						</div>
 					</a>

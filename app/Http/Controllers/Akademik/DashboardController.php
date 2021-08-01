@@ -20,7 +20,7 @@ class DashboardController extends Controller
 
         $bulan = ['01','02','03','04','05','06','07','08','09','10','11','12'];
         foreach ($bulan as $b) {
-            $area[]=Surat::where('created_at',  'like', '%' . $year . '-' . $b . '%')->count();
+            $area[]=Surat::where('created_at',  'like', '%' . $year . '-' . $b . '%')->where('status_surat', '<' , 4)->count();
         }
 
         $tahun = array();
@@ -31,7 +31,7 @@ class DashboardController extends Controller
             $tahun[4] = date('Y')+2;
 
         foreach($tahun as $t) {
-            $area2[]=Surat::where('created_at',  'like', '%' . $t . '-' . '%')->count();
+            $area2[]=Surat::where('created_at',  'like', '%' . $t . '-' . '%')->where('status_surat', '<' , 4)->count();
         }
 
         $label = array();
