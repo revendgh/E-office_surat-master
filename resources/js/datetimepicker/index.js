@@ -1,19 +1,14 @@
-import * as $ from 'jquery';
+import * as $ from 'jquery-datetimepicker';
 import 'jquery-datetimepicker/build/jquery.datetimepicker.full.min.js';
 import 'jquery-datetimepicker/build/jquery.datetimepicker.min.css';
 
 export default (function () {
   
-  $.datetimepicker.setLocale('id');
+  $.datetimepicker.setLocale('fr');
   
   $('.date').datetimepicker({
     timepicker:false,
     format:'Y-m-d'
-  }).attr('autocomplete', "off");
-
-  $('.date2').datetimepicker({
-    timepicker:false,
-    format:'d-m-Y'
   }).attr('autocomplete', "off");
   
   $('.date-time').datetimepicker({

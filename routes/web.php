@@ -23,11 +23,14 @@ Route::group(['prefix' => AKADEMIK, 'as' => AKADEMIK . '.', 'middleware'=>['auth
     Route::get('surat/diteruskan', 'Akademik\SuratController@diteruskan')->name('surat.diteruskan');
     Route::get('surat/ditolak', 'Akademik\SuratController@ditolak')->name('surat.ditolak');
     Route::get('surat/cetak', 'Akademik\SuratController@cetak')->name('surat.cetak');
+    Route::get('surat/menunggu', 'Akademik\SuratController@menunggu_persetujuan')->name('surat.menunggu_persetujuan');
+    Route::get('surat/disetujui', 'Akademik\SuratController@disetujui')->name('surat.menunggu_disetujui');
 
     Route::get('surat/verifikasi/{id}', 'Akademik\SuratController@verifikasi')->name('surat.verifikasi');
     Route::get('surat/teruskan/{id}', 'Akademik\SuratController@teruskan')->name('surat.teruskan');
     Route::put('surat/tolak/{id}', 'Akademik\SuratController@tolak')->name('surat.tolak');
     Route::put('surat/cetak/{id}', 'Akademik\SuratController@export')->name('surat.export');
+    Route::put('surat/persetujuan/{id}', 'Akademik\SuratController@persetujuan')->name('surat.persetujuan');
 
     Route::resource('surat', 'Akademik\SuratController');
 });
@@ -77,10 +80,13 @@ Route::group(['prefix' => JURUSAN, 'as' => JURUSAN . '.', 'middleware'=>['auth',
     Route::get('surat/terverifikasi', 'Jurusan\SuratController@terverifikasi')->name('surat.terverifikasi');
     Route::get('surat/ditolak', 'Jurusan\SuratController@ditolak')->name('surat.ditolak');
     Route::get('surat/cetak', 'Jurusan\SuratController@cetak')->name('surat.cetak');
+    Route::get('surat/menunggu', 'Jurusan\SuratController@menunggu_persetujuan')->name('surat.menunggu_persetujuan');
+    Route::get('surat/disetujui', 'Jurusan\SuratController@disetujui')->name('surat.menunggu_disetujui');
 
     Route::get('surat/verifikasi/{id}', 'Jurusan\SuratController@verifikasi')->name('surat.verifikasi');
     Route::put('surat/tolak/{id}', 'Jurusan\SuratController@tolak')->name('surat.tolak');
     Route::put('surat/cetak/{id}', 'Jurusan\SuratController@export')->name('surat.export');
+    Route::put('surat/persetujuan/{id}', 'Jurusan\SuratController@persetujuan')->name('surat.persetujuan');
 
     Route::resource('surat', 'Jurusan\SuratController');
 });

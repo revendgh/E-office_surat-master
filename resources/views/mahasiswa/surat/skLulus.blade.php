@@ -60,7 +60,7 @@
             <div class="form-group col-md-6">
               <label for="tanggal_yudisium">Tanggal Yudisium</label>
               <div class="input-group mb-3">
-              <input id="tanggal_yudisium" type="text" class="form-control @error('tanggal_yudisium') is-invalid @enderror date datetimepicker" name="tanggal_yudisium" value="{{ old('tanggal_yudisium') }}" autocomplete="tanggal_yudisium" required>
+              <input id="tanggal_yudisium" type="text" class="form-control @error('tanggal_yudisium') is-invalid @enderror date datetimepicker1" name="tanggal_yudisium" value="{{ old('tanggal_yudisium') }}" autocomplete="tanggal_yudisium" required>
               </div>
               <small id="tanggal_yudisium" class="form-text text-muted"></small>
               @error('tanggal_yudisium')
@@ -89,6 +89,24 @@
 @endsection
 @section('script')
 <script type="text/javascript">
+jQuery.datetimepicker.setLocale('id');
 
+jQuery('.datetimepicker1').datetimepicker({
+ i18n:{
+  id:{
+   months:[
+    'Januari','Februari','Maret','April',
+    'Mei','Juni','Juli','Agustus',
+    'September','Oktober','November','Desember',
+   ],
+   dayOfWeek:[
+    "Minggu", "Senin", "Selasa", "Rabu", 
+    "Kamis", "Jum'at", "Sabtu",
+   ]
+  }
+ },
+ timepicker:false,
+ format:'d/m/Y'
+});
 </script>
 @endsection
