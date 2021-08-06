@@ -29,6 +29,8 @@
       <a class="sidebar-link {{ Str::startsWith($route, AKADEMIK . '.surat.diteruskan') ? 'active' : '' }}" href="{{ route(AKADEMIK . '.surat.diteruskan') }}">Diteruskan</a>
       <a class="sidebar-link {{ Str::startsWith($route, AKADEMIK . '.surat.ditolak') ? 'active' : '' }}" href="{{ route(AKADEMIK . '.surat.ditolak') }}">Ditolak</a>
       <a class="sidebar-link {{ Str::startsWith($route, AKADEMIK . '.surat.cetak') ? 'active' : '' }}" href="{{ route(AKADEMIK . '.surat.cetak') }}">Cetak</a>
+      <a class="sidebar-link {{ Str::startsWith($route, AKADEMIK . '.surat.menunggu_persetujuan') ? 'active' : '' }}" href="{{ route(AKADEMIK . '.surat.menunggu_persetujuan') }}">Menunggu Persetujuan</a>
+      <a class="sidebar-link {{ Str::startsWith($route, AKADEMIK . '.surat.disetujui') ? 'active' : '' }}" href="{{ route(AKADEMIK . '.surat.disetujui') }}">Disetujui</a>
     </li>               
   </ul>
 </li>

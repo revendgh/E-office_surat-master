@@ -60,8 +60,9 @@ class DashboardController extends Controller
             $label[8] = 'Surat Melanjutkan Penelitian';
             $label[9] = 'Surat Pengantar KP';
         
+        $hari = Carbon::now()->format('Y-m-d');
         foreach($label as $l){
-            $pie[]=Surat::where('nama_surat', $l)->whereHas('user.mahasiswa', function($q) use ($jurusan){
+            $pie[]=Surat::where('created_at',  'like', '%' . $hari . '%')->where('nama_surat', $l)->whereHas('user.mahasiswa', function($q) use ($jurusan){
             $q->where('jurusan', $jurusan);
         })->count();
         }

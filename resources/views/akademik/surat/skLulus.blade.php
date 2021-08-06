@@ -68,9 +68,16 @@
           'files'  => true
         ])
       !!}
-      @elseif($surat->status_surat == 2 || $surat->status_surat == 3)
+      @elseif($surat->status_surat == 2)
       {!! Form::model($surat, [
           'route'  => [ AKADEMIK . '.surat.export', $surat->id ],
+          'method' => 'put',
+          'files'  => true
+        ])
+      !!}
+      @elseif($surat->status_surat == 3)
+      {!! Form::model($surat, [
+          'route'  => [ AKADEMIK . '.surat.persetujuan', $surat->id ],
           'method' => 'put',
           'files'  => true
         ])
@@ -93,7 +100,7 @@
               @if($surat->status_surat == 2)
                 <input id="no_surat" type="text" class="form-control @error('no_surat') is-invalid @enderror" name="no_surat" autocomplete="no_surat" required>
               @elseif($surat->status_surat == 3)
-                <input id="no_surat" type="text" class="form-control @error('no_surat') is-invalid @enderror" name="no_surat" autocomplete="no_surat" value="{{ $surat->no_surat}}" required>
+                <input id="no_surat" type="text" class="form-control @error('no_surat') is-invalid @enderror" name="no_surat" autocomplete="no_surat" value="{{ $surat->no_surat}}" readonly>
               @endif
               </div>
               @error('no_surat')
@@ -149,6 +156,29 @@
               @enderror
             </div>
           </div>
+
+          @if($surat->status_surat == 3 || $surat->status_surat == 9)
+          <div class="form-group">
+            <div class="form-group col-md-8">
+              <label for="file_surat">Úpload Surat</label>
+              <div class="input-group mb-3">
+              <input id="file_surat" type="file" class="form-control @error('file_surat') is-invalid @enderror" name="file_surat" autocomplete="file_surat" required>
+              @isset($surat->file_surat)
+              <div class="input-group-append">
+                <a href="{{url('storage/surat/'.$surat->file_surat )}}"class="btn btn-success" download>Download</a>
+              </div>
+              @endisset
+              </div>
+              <small id="file_surat" class="form-text text-muted">File scan surat</small>
+              <small id="file_surat" class="form-text text-muted">hanya file pdf, max 2 Mb </small>
+              @error('file_surat')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+          </div>
+          @endif
 
         @if($surat->status_surat == 0)
         <div class="row pl-3 pr-3">
@@ -210,8 +240,20 @@
           </div>
           <div class="col-sm-4" style="text-align: right">
               <button type="submit"class="btn btn-lg btn-success pull-right">
-                  {{ __('Cetak') }}
+                  {{ __('Teruskan') }}
               </button>
+          </div>
+        </div>
+        @elseif($surat->status_surat == 9)
+        <div class="row pl-3 pr-3">
+          <div class="col-sm-8">
+              <a href="{{ route(AKADEMIK . '.surat.menunggu_persetujuan') }}" class="btn btn-lg btn-primary">Kembali</a>
+          </div>
+        </div>
+        @elseif($surat->status_surat == 10)
+        <div class="row pl-3 pr-3">
+          <div class="col-sm-8">
+              <a href="{{ route(AKADEMIK . '.surat.disetujui') }}" class="btn btn-lg btn-primary">Kembali</a>
           </div>
         </div>
         @endif

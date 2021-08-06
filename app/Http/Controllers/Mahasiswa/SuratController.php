@@ -257,11 +257,11 @@ class SuratController extends Controller
     public function sp_kp_store(Request $request)
     {
         $data = $request->all();
-        $surat = Surat::create($data);
-
         $this->validate($request,[
             'surat_balasan' => 'max:2000|mimes:pdf',
         ]);
+        
+        $surat = Surat::create($data);
         $name = Str::random(5).' '.$request->file('surat_balasan')->getClientOriginalName();
         $file = $request->file('surat_balasan')->storeAs('KP/', $name, 'public');
         $data['surat_balasan'] = $name;

@@ -28,6 +28,8 @@
       <a class="sidebar-link {{ Str::startsWith($route, JURUSAN . '.surat.terverifikasi') ? 'active' : '' }}" href="{{ route(JURUSAN . '.surat.terverifikasi') }}">Terverifikasi</a>
       <a class="sidebar-link {{ Str::startsWith($route, JURUSAN . '.surat.ditolak') ? 'active' : '' }}" href="{{ route(JURUSAN . '.surat.ditolak') }}">Ditolak</a>
       <a class="sidebar-link {{ Str::startsWith($route, JURUSAN . '.surat.cetak') ? 'active' : '' }}" href="{{ route(JURUSAN . '.surat.cetak') }}">Cetak</a>
+      <a class="sidebar-link {{ Str::startsWith($route, JURUSAN . '.surat.menunggu_persetujuan') ? 'active' : '' }}" href="{{ route(JURUSAN . '.surat.menunggu_persetujuan') }}">Menunggu Persetujuan</a>
+      <a class="sidebar-link {{ Str::startsWith($route, JURUSAN . '.surat.disetujui') ? 'active' : '' }}" href="{{ route(JURUSAN . '.surat.disetujui') }}">Disetujui</a>
     </li>               
   </ul>
 </li>

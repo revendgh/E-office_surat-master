@@ -95,7 +95,7 @@ class SuratController extends Controller
         $file = $request->file('file_surat')->storeAs('surat/', $name, 'public');
         $data['file_surat'] = $name;
         $surat->save();
-        return redirect()->route(JURUSAN. '.surat.persetujuan')->withSuccess('Permohonan surat berhasil diteruskan ke pejabat penandatangan');
+        return redirect()->route(JURUSAN. '.surat.menunggu_persetujuan')->withSuccess('Permohonan surat berhasil diteruskan ke pejabat penandatangan');
     }
 
     public function export(Request $request, $id)

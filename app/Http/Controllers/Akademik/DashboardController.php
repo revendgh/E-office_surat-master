@@ -41,8 +41,9 @@ class DashboardController extends Controller
             $label[3] = 'SK Pengganti KTM';
             $label[4] = 'SK Pernah Studi';
         
+        $hari = Carbon::now()->format('Y-m-d');
         foreach($label as $l){
-            $pie[]=Surat::where('nama_surat', $l)->count();
+            $pie[]=Surat::where('created_at',  'like', '%' . $hari . '%')->where('nama_surat', $l)->count();
         }
 
         $color = ['#30a5ff', '#ffb53e', '#1ebfae', '#f9243f', '#7715bd'];

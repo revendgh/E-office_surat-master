@@ -79,18 +79,18 @@ class SuratController extends Controller
         return redirect()->route(AKADEMIK. '.surat.diteruskan')->withSuccess('Permohonan surat berhasil diteruskan kejurusan');
     }
 
-    public function persetujuan($id)
+    public function persetujuan(Request $request, $id)
     {
         $surat = Surat::findOrFail($id);
         $surat->status_surat = 9;
         $this->validate($request,[
             'file_surat' => 'max:2000|mimes:pdf',
         ]);
-        $name = Str::random(5).' '.$request->file('file_surat')->getClientOriginalName();
+        $name = $request->file('file_surat')->getClientOriginalName();
         $file = $request->file('file_surat')->storeAs('surat/', $name, 'public');
-        $data['file_surat'] = $name;
+        $surat->file_surat = $name;
         $surat->save();
-        return redirect()->route(AKADEMIK. '.surat.persetujuan')->withSuccess('Permohonan surat berhasil diteruskan ke pejabat penandatangan');
+        return redirect()->route(AKADEMIK. '.surat.menunggu_persetujuan')->withSuccess('Permohonan surat berhasil diteruskan ke pejabat penandatangan');
     }
 
     public function export(Request $request, $id)
