@@ -46,6 +46,21 @@ class LoginController extends Controller
             case 11:
                     return '/jurusan';
                 break; 
+            case 4:
+                    return '/unit';
+                break;
+            case 5:
+                    return '/arsiparis';
+                break; 
+            case 6:
+                    return '/sekretariat';
+                break; 
+            case 7:
+                    return '/warektor';
+                break; 
+            case 8:
+                    return '/rektor';
+                break;  
             default:
                     return '/login'; 
                 break;

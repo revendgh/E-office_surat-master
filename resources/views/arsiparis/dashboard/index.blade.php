@@ -1,4 +1,4 @@
-@extends('warektor.default')
+@extends('arsiparis.default')
 
 @section('content')
 

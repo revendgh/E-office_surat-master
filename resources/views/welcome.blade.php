@@ -36,7 +36,37 @@
                                     </li>
                                     <li>
                                         @auth
-                                        <a href="{{ route(ADMIN . '.dash') }}" class="text-sm text-gray-700 underline">Home</a>
+                                        @switch(auth()->user()->role)
+                                            @case(100)
+                                                <a href="{{ route(ADMIN . '.dash') }}" class="text-sm text-gray-700 underline">Home</a>
+                                                @break
+                                            @case(1)
+                                                <a href="{{ route(MAHASISWA . '.dash') }}" class="text-sm text-gray-700 underline">Home</a>
+                                                @break
+                                            @case(10)
+                                                <a href="{{ route(AKADEMIK. '.dash') }}" class="text-sm text-gray-700 underline">Home</a>
+                                                @break
+                                            @case(11)
+                                                <a href="{{ route(JURUSAN . '.dash') }}" class="text-sm text-gray-700 underline">Home</a>
+                                                @break
+                                            @case(4)
+                                                <a href="{{ route(UNIT . '.dash') }}" class="text-sm text-gray-700 underline">Home</a>
+                                                @break
+                                            @case(5)
+                                                <a href="{{ route(ARSIPARIS . '.dash') }}" class="text-sm text-gray-700 underline">Home</a>
+                                                @break
+                                            @case(6)
+                                                <a href="{{ route(SEKRETARIAT . '.dash') }}" class="text-sm text-gray-700 underline">Home</a>
+                                                @break
+                                            @case(7)
+                                                <a href="{{ route(WAREKTOR . '.dash') }}" class="text-sm text-gray-700 underline">Home</a>
+                                                @break
+                                            @case(8)
+                                                <a href="{{ route(REKTOR . '.dash') }}" class="text-sm text-gray-700 underline">Home</a>.
+                                                @break
+                                            @default
+                                                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                                        @endswitch
                                         @else
                                         <a href="{{ route('login') }}" role="button" class="btn btn-outline-primary login ">Login</a>
                                         @endif

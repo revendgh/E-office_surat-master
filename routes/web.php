@@ -91,6 +91,37 @@ Route::group(['prefix' => JURUSAN, 'as' => JURUSAN . '.', 'middleware'=>['auth',
     Route::resource('surat', 'Jurusan\SuratController');
 });
 
+Route::group(['prefix' => UNIT, 'as' => UNIT . '.', 'middleware'=>['auth', 'Role:4']], function () {
+    Route::get('/', 'Unit\DashboardController@index')->name('dash');
+    Route::resource('masuk', 'Unit\SuratMasukController');
+    Route::resource('keluar', 'Unit\SuratKeluarController');
+});
+
+Route::group(['prefix' => ARSIPARIS, 'as' => ARSIPARIS . '.', 'middleware'=>['auth', 'Role:5']], function () {
+    Route::get('/', 'Arsiparis\DashboardController@index')->name('dash');
+    Route::resource('masuk', 'Arsiparis\SuratMasukController');
+    Route::resource('keluar', 'Arsiparis\SuratKeluarController');
+    Route::resource('agenda', 'Arsiparis\BukuAgendaController');
+});
+
+Route::group(['prefix' => SEKRETARIAT, 'as' => SEKRETARIAT . '.', 'middleware'=>['auth', 'Role:6']], function () {
+    Route::get('/', 'Sekretariat\DashboardController@index')->name('dash');
+    Route::resource('masuk', 'Sekretariat\SuratMasukController');
+    Route::resource('keluar', 'Sekretariat\SuratKeluarController');
+});
+
+Route::group(['prefix' => WAREKTOR, 'as' => WAREKTOR . '.', 'middleware'=>['auth', 'Role:7']], function () {
+    Route::get('/', 'Warektor\DashboardController@index')->name('dash');
+    Route::resource('masuk', 'Warektor\SuratMasukController');
+    Route::resource('keluar', 'Warektor\SuratKeluarController');
+});
+
+Route::group(['prefix' => REKTOR, 'as' => REKTOR . '.', 'middleware'=>['auth', 'Role:8']], function () {
+    Route::get('/', 'Rektor\DashboardController@index')->name('dash');
+    Route::resource('masuk', 'Rektor\SuratMasukController');
+    Route::resource('keluar', 'Rektor\SuratKeluarController');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

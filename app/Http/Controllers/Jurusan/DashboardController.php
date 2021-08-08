@@ -66,6 +66,8 @@ class DashboardController extends Controller
             $q->where('jurusan', $jurusan);
         })->count();
         }
+        var_dump ($pie);
+        die();
 
         $color = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe'];
         $highlight = ['#62b9fb', '#fac878', '#3cdfce', '#f6495f', '#b64fff'];

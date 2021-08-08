@@ -29,7 +29,7 @@
 
 		<!-- ### $Sidebar Menu ### -->
 		<ul class="sidebar-menu scrollable pos-r">
-			@include('warektor.partials.menu')
+			@include('sekretariat.partials.menu')
 		</ul>
 	</div>
 </div>

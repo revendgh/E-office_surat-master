@@ -11,18 +11,19 @@
     }
 </style>
 @yield('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('datetimepicker/jquery.datetimepicker.css') }}" >
 <body class="app">
 
-    @include('warektor.partials.spinner')
+    @include('unit.partials.spinner')
 
     <div>
         <!-- #Left Sidebar ==================== -->
-        @include('warektor.partials.sidebar')
+        @include('unit.partials.sidebar')
 
         <!-- #Main ============================ -->
         <div class="page-container">
             <!-- ### $Topbar ### -->
-            @include('warektor.partials.topbar')
+            @include('unit.partials.topbar')
 
             <!-- ### $App Screen Content ### -->
             <main class='main-content bgc-grey-100'>
@@ -31,7 +32,7 @@
 
                         <h4 class="c-grey-900 mT-10 mB-30">@yield('page-header')</h4>
 
-                        @include('warektor.partials.messages')
+                        @include('unit.partials.messages')
                         @yield('content')
 
                     </div>
@@ -49,6 +50,8 @@
 
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('datetimepicker/jquery.js') }}"></script>
+    <script src="{{ asset('datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
     @yield('script')
 
     <!-- Global js content -->

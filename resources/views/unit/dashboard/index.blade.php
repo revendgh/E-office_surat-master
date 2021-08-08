@@ -1,4 +1,4 @@
-@extends('warektor.default')
+@extends('unit.default')
 
 @section('content')
 
@@ -111,7 +111,7 @@
                             <div class="bd bgc-white">
                                 <div class="layers">
                                     <div class="layer w-100 pX-20 pT-20">
-                                        <h6 class="lh-1">Pembagian Jenis Surat Jurusan</h6>
+                                        <h6 class="lh-1">Pembagian Jenis Surat unit</h6>
                                     </div>
                                     <div class="layer w-100 p-20">
                                         <canvas id="PieChart" height="220"></canvas>

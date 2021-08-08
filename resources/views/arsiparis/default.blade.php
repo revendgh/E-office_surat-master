@@ -13,16 +13,16 @@
 @yield('css')
 <body class="app">
 
-    @include('warektor.partials.spinner')
+    @include('arsiparis.partials.spinner')
 
     <div>
         <!-- #Left Sidebar ==================== -->
-        @include('warektor.partials.sidebar')
+        @include('arsiparis.partials.sidebar')
 
         <!-- #Main ============================ -->
         <div class="page-container">
             <!-- ### $Topbar ### -->
-            @include('warektor.partials.topbar')
+            @include('arsiparis.partials.topbar')
 
             <!-- ### $App Screen Content ### -->
             <main class='main-content bgc-grey-100'>
@@ -31,7 +31,7 @@
 
                         <h4 class="c-grey-900 mT-10 mB-30">@yield('page-header')</h4>
 
-                        @include('warektor.partials.messages')
+                        @include('arsiparis.partials.messages')
                         @yield('content')
 
                     </div>
