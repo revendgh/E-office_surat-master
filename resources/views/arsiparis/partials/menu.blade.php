@@ -19,12 +19,21 @@
         <span class="title">Surat Masuk</span>
     </a>
 </li>
-<li class="nav-item">
-    <a class="sidebar-link {{ Str::startsWith($route, ARSIPARIS. '.agenda') ? 'actived' : '' }}" href="{{ route(ARSIPARIS . '.agenda.index') }}">
-        <span class="icon-holder">
-            <i class="c-purple-500 ti-book"></i>
-        </span>
-        <span class="title">Buku Agenda</span>
-    </a>
+<li class="nav-item dropdown">
+  <a class="dropdown-toggle" href="javascript:void(0);">
+    <span class="icon-holder">
+        <i class="c-purple-500 ti-book"></i>
+      </span>
+    <span class="title">Buku Agenda</span>
+    <span class="arrow">
+        <i class="ti-angle-right"></i>
+      </span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a class="sidebar-link {{ Str::startsWith($route, ARSIPARIS. '.agenda.masuk') ? 'actived' : '' }}" href="{{ route(ARSIPARIS . '.agenda.index') }}">Surat Masuk</a>
+      <a class="sidebar-link {{ Str::startsWith($route, ARSIPARIS. '.agenda.keluar') ? 'actived' : '' }}" href="{{ route(ARSIPARIS . '.masuk.index') }}">Surat Keluar</a>
+    </li>               
+  </ul>
 </li>
 

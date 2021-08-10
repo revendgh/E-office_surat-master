@@ -74,6 +74,23 @@
             <div class="form-group col-md-8">
               <label for="tujuan_surat">Tujuan Surat</label>
               <div class="input-group mb-3">
+              <select id="tujuan_surat" type="text" class="form-control @error('tujuan_surat') is-invalid @enderror" name="tujuan_surat" value="{{ old('tujuan_surat') }}" autocomplete="tujuan_surat" readonly>
+                <option value="" disabled>Silahkan memilih tujuan surat</option>
+                  <option value="1">Wakil Rektor 2</option>
+                </select>
+              </div>
+              @error('tujuan_surat')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-group col-md-8">
+              <label for="tujuan_surat">Tujuan Pimpinan</label>
+              <div class="input-group mb-3">
               <select id="tujuan_surat" type="text" class="form-control @error('tujuan_surat') is-invalid @enderror" name="tujuan_surat" value="{{ old('tujuan_surat') }}" autocomplete="tujuan_surat">
                 <option value="" disabled>Silahkan memilih tujuan surat</option>
                 @foreach($user as $user)

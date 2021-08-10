@@ -5,14 +5,6 @@
 @endsection
 
 @section('content')
-
-    <div class="mB-20">
-        <a href="{{ route(UNIT . '.masuk.create') }}" class="btn btn-info">
-            {{ trans('app.add_button') }}
-        </a>
-    </div>
-
-
     <div class="bgc-white bd bdrs-3 p-20 mB-20">
         <div class="table-responsive">
             <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -47,7 +39,7 @@
                     <?php $no++ ;?>
                         <tr>
                             <td>{{ $no }}</td>
-                            <td><a href="{{ route(UNIT . '.masuk.edit', 1) }}">UNIBA/SK/0112/08/2021</a></td>
+                            <td><a href="{{ route(UNIT . '.masuk.create') }}">UNIBA/SK/0112/08/2021</a></td>
                             <td>Undangan Seminar Nasional</td>
                             <td>19/07/2021</td>
                             <td>Jurusan Matematika dan Teknologi Informasi</td>
@@ -57,7 +49,7 @@
                             <td>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
-                                        <a href="{{ route(UNIT . '.masuk.edit', 1) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
+                                        <a href="{{ route(UNIT . '.masuk.create') }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
                                     <li class="list-inline-item">
                                         <a href=""class="btn btn-info btn-sm">
                                         <span class="ti-eye"></span></a>

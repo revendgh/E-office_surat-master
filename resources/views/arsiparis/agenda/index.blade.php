@@ -11,11 +11,11 @@
                 <thead>
                     <tr>
                         <th>No Agenda</th>
-                        <th>No Surat</th>
-                        <th>Perihal Surat</th>
-                        <th>Tanggal Surat</th>
-                        <th rowspan="2">Tujuan</th>
                         <th rowspan="2">Pengirim</th>
+                        <th>Tanggal Surat</th>
+                        <th>No Surat</th>
+                        <th>Ringkasan Isi</th>
+                        <th rowspan="2">Tujuan</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -23,11 +23,11 @@
                 <tfoot>
                     <tr>
                         <th>No Agenda</th>
-                        <th>No Surat</th>
-                        <th>Perihal Surat</th>
-                        <th>Tanggal Surat</th>
-                        <th rowspan="2">Tujuan</th>
                         <th rowspan="2">Pengirim</th>
+                        <th>Tanggal Surat</th>
+                        <th>No Surat</th>
+                        <th>Ringkasan Isi</th>
+                        <th rowspan="2">Tujuan</th>
                         <th>Actions</th>
                     </tr>
                 </tfoot>
@@ -37,11 +37,11 @@
                     <?php $no++ ;?>
                         <tr>
                             <td>{{ $no }}</td>
+                            <td>Universitas Balikpapan</td>
+                            <td>19/07/2021</td>
                             <td><a href="{{ route(ARSIPARIS . '.masuk.create') }}">UNIBA/SK/0112/08/2021</a></td>
                             <td>Undangan Seminar Nasional</td>
-                            <td>19/07/2021</td>
                             <td>Jurusan Matematika dan Teknologi Informasi</td>
-                            <td>Universitas Balikpapan</td>
                             <td>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">

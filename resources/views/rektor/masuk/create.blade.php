@@ -91,6 +91,17 @@
 
           <div class="form-group">
             <div class="form-group col-md-8">
+              {!! Form::mySelect('disposisi', 'Peruntukkan Disposisi', config('variables.disposisi'), ['class' => 'form-control select2']) !!}
+              @error('tujuan_surat')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-group col-md-8">
               <label for="pengirim_surat">Pengirim</label>
               <div class="input-group mb-3">
               <input id="pengirim_surat" type="text" class="form-control @error('pengirim_surat') is-invalid @enderror" name="pengirim_surat" autocomplete="pengirim_surat" value="{{ old('pengirim_surat') }}" readonly>
