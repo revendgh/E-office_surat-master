@@ -11,6 +11,7 @@
     }
 </style>
 @yield('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('datetimepicker/jquery.datetimepicker.css') }}" >
 <body class="app">
 
     @include('arsiparis.partials.spinner')
@@ -49,6 +50,8 @@
 
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('datetimepicker/jquery.js') }}"></script>
+    <script src="{{ asset('datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
     @yield('script')
 
     <!-- Global js content -->

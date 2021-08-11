@@ -28,3 +28,11 @@
     </li>               
   </ul>
 </li>
+<li class="nav-item">
+    <a class="sidebar-link {{ Str::startsWith($route, WAREKTOR. '.keluar') ? 'actived' : '' }}" href="{{ route(WAREKTOR . '.keluar.index') }}">
+        <span class="icon-holder">
+            <i class="c-red-500 ti-files"></i>
+        </span>
+        <span class="title">Surat Keluar</span>
+    </a>
+</li>

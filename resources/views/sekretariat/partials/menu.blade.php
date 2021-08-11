@@ -19,3 +19,11 @@
         <span class="title">Surat Masuk</span>
     </a>
 </li>
+<li class="nav-item">
+    <a class="sidebar-link {{ Str::startsWith($route, SEKRETARIAT. '.keluar') ? 'actived' : '' }}" href="{{ route(SEKRETARIAT . '.keluar.index') }}">
+        <span class="icon-holder">
+            <i class="c-red-500 ti-files"></i>
+        </span>
+        <span class="title">Surat Keluar</span>
+    </a>
+</li>
