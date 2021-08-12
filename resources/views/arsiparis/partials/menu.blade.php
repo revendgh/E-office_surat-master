@@ -40,7 +40,7 @@
   <ul class="dropdown-menu">
     <li>
       <a class="sidebar-link {{ Str::startsWith($route, ARSIPARIS. '.agenda.masuk') ? 'actived' : '' }}" href="{{ route(ARSIPARIS . '.agenda.index') }}">Surat Masuk</a>
-      <a class="sidebar-link {{ Str::startsWith($route, ARSIPARIS. '.agenda.keluar') ? 'actived' : '' }}" href="{{ route(ARSIPARIS . '.masuk.index') }}">Surat Keluar</a>
+      <a class="sidebar-link {{ Str::startsWith($route, ARSIPARIS. '.agenda.keluar') ? 'actived' : '' }}" href="{{ route(ARSIPARIS . '.agenda.index') }}">Surat Keluar</a>
     </li>               
   </ul>
 </li>
