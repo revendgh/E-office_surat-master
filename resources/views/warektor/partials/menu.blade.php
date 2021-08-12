@@ -11,6 +11,10 @@
         <span class="title">Dashboard</span>
     </a>
 </li>
+<li class="nav-item">
+    <hr class="rounded" style="border-top: 3px solid #bbb; border-radius: 5px;">
+    <h4 class="pl-4">E-OFFICE</h4>
+</li>
 <li class="nav-item dropdown">
   <a class="dropdown-toggle" href="javascript:void(0);">
     <span class="icon-holder">
@@ -36,3 +40,17 @@
         <span class="title">Surat Keluar</span>
     </a>
 </li>
+@if(Auth::user()->wakil_rektor->jabatan == "Wakil Rektor Akademik")
+<li class="nav-item">
+    <hr class="rounded" style="border-top: 3px solid #bbb; border-radius: 5px;">
+    <h4 class="pl-4">E-SURAT</h4>
+</li>
+<li class="nav-item">
+    <a class="sidebar-link {{ Str::startsWith($route, WAREKTOR. '.keluar') ? 'actived' : '' }}" href="{{ route(WAREKTOR . '.keluar.index') }}">
+        <span class="icon-holder">
+            <i class="c-purple-500 ti-notepad"></i>
+        </span>
+        <span class="title">Surat Akademik</span>
+    </a>
+</li>
+@endif

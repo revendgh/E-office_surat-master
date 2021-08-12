@@ -4,21 +4,6 @@
     Buat<small> Surat Keluar </small>
 @endsection
 
-@section('css')
-<style>
-    /*Textbox*/
-    .ck-editor__editable {
-        min-height: 300px;
-        min-width: 1000px;
-        max-width: 1000px;
-    }
-    /*Toolbar*/
-    .ck-editor__top {
-        min-width: 860px;
-    }
-</style>
-@endsection
-
 @section('content')
 
     <div class="col-md-9">
@@ -101,21 +86,6 @@
           </div>
 
           <div class="form-group">
-            <div class="form-group col-md-12">
-              <label for="ck_surat">Buat Surat</label>
-              <div class="input-group mb-3">
-              <textarea id="ck_surat" type="text" class="form-control @error('ck_surat') is-invalid @enderror ckeditor" rows="30" name="ck_surat" autocomplete="ck_surat"></textarea>
-              </div>
-              <small id="ck_surat" class="form-text text-muted">Silahkan pilih salah satu antar membuat surat pada kolom ini, atau mengupload file surat yang sudah jadi pada kolom di bawah</small>
-              @error('ck_surat')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-              @enderror
-            </div>
-          </div>
-
-          <div class="form-group">
             <div class="form-group col-md-8">
               <label for="file_surat">Upload Surat</label>
               <div class="input-group mb-3">
@@ -183,10 +153,5 @@ jQuery('.datetimepicker1').datetimepicker({
  format:'d/m/Y'
 });
 
-  ClassicEditor
-        .create( document.querySelector( '#ck_surat' ) )
-        .catch( error => {
-            console.error( error );
-        } );
 </script>
 @endsection
