@@ -31,6 +31,7 @@
       <a class="sidebar-link {{ Str::startsWith($route, AKADEMIK . '.surat.cetak') ? 'active' : '' }}" href="{{ route(AKADEMIK . '.surat.cetak') }}">Cetak</a>
       <a class="sidebar-link {{ Str::startsWith($route, AKADEMIK . '.surat.menunggu_persetujuan') ? 'active' : '' }}" href="{{ route(AKADEMIK . '.surat.menunggu_persetujuan') }}">Menunggu Persetujuan</a>
       <a class="sidebar-link {{ Str::startsWith($route, AKADEMIK . '.surat.disetujui') ? 'active' : '' }}" href="{{ route(AKADEMIK . '.surat.disetujui') }}">Disetujui</a>
+      <a class="sidebar-link {{ Str::startsWith($route, AKADEMIK . '.surat.selesai') ? 'active' : '' }}" href="{{ route(AKADEMIK . '.surat.selesai') }}">Selesai</a>
     </li>               
   </ul>
 </li>

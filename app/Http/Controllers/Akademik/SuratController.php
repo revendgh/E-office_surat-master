@@ -9,6 +9,7 @@ use Str;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use PDF;
+use Storage;
 
 class SuratController extends Controller
 {
@@ -54,6 +55,12 @@ class SuratController extends Controller
         return view('akademik.surat.disetujui', compact('items'));
     }
 
+    public function selesai()
+    {
+        $items = Surat::latest('updated_at')->where('status_surat', 11)->get();
+        return view('akademik.surat.selesai', compact('items'));
+    }
+
     public function tolak(Request $request, $id)
     {
         $surat = Surat::findOrFail($id); 
@@ -91,6 +98,23 @@ class SuratController extends Controller
         $surat->file_surat = $name;
         $surat->save();
         return redirect()->route(AKADEMIK. '.surat.menunggu_persetujuan')->withSuccess('Permohonan surat berhasil diteruskan ke pejabat penandatangan');
+    }
+
+    public function penyelesaian(Request $request, $id)
+    {
+        $surat = Surat::findOrFail($id);
+        $surat->status_surat = 11;
+        $this->validate($request,[
+            'file_surat' => 'max:2000|mimes:pdf',
+        ]);
+        if (Storage::exists('surat/'.$surat->file_surat)) {
+            Storage::delete('surat/'.$surat->file_surat);
+        }
+        $name = $request->file('file_surat')->getClientOriginalName();
+        $file = $request->file('file_surat')->storeAs('surat/', $name, 'public');
+        $surat->file_surat = $name;
+        $surat->save();
+        return redirect()->route(AKADEMIK. '.surat.selesai')->withSuccess('Permohonan selesai diproses');
     }
 
     public function export(Request $request, $id)

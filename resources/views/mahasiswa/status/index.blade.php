@@ -14,6 +14,7 @@
                         <th>Jenis Surat</th>
                         <th>Tanggal Pengajuan</th>
                         <th>Status Surat</th>
+                        <th>File Surat</th>
                     </tr>
                 </thead>
 
@@ -22,6 +23,7 @@
                         <th>Jenis Surat</th>
                         <th>Tanggal Pengajuan</th>
                         <th>Status Surat</th>
+                        <th>File Surat</th>
                     </tr>
                 </tfoot>
 
@@ -38,9 +40,18 @@
                                 <mark style="background-color: red; color: white;">
                                             Ditolak
                                 @elseif($item->status_surat == 2 || $item->status_surat == 6)
-                                <mark style="background-color: yellow; color: black;">
+                                <mark style="background-color: #008B8B; color: white;">
                                             Terverifikasi
                                 @elseif($item->status_surat == 3 || $item->status_surat == 7)
+                                <mark style="background-color: purple; color: white;">
+                                            Diproses
+                                @elseif($item->status_surat == 9 || $item->status_surat == 19)
+                                <mark style="background-color: brown; color: white;">
+                                            Menunggu Persetujuan
+                                @elseif($item->status_surat == 10 || $item->status_surat == 20)
+                                <mark style="background-color: blue; color: white;">
+                                            Disetujui
+                                @elseif($item->status_surat == 11 || $item->status_surat == 21)
                                 <mark style="background-color: green; color: white;">
                                             Selesai
                                 @elseif($item->status_surat == 4)
@@ -48,6 +59,18 @@
                                             Diteruskan ke Jurusan
                                 @endif
                             </td>
+                            <td>
+                                @if($item->status_surat == 11 || $item->status_surat == 21)
+                                <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="{{ url('storage/surat/'.$item->file_surat) }}" title="Lihat File Surat" class="btn btn-info btn-sm" target="_blank">
+                                    <span class="ti-eye"></span></a></li>
+                                <li class="list-inline-item">
+                                    <a href="{{ url('storage/surat/'.$item->file_surat) }}" title="Download File Surat" class="btn btn-primary btn-sm" download>
+                                    <span class="ti-import"></span></a></li>
+                                </ul>
+                                @endif
+                            </td>                   
                         </tr>
                     @endforeach
                 </tbody>

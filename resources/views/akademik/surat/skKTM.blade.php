@@ -82,6 +82,13 @@
           'files'  => true
         ])
       !!}
+      @elseif($surat->status_surat == 10)
+      {!! Form::model($surat, [
+          'route'  => [ AKADEMIK . '.surat.penyelesaian', $surat->id ],
+          'method' => 'put',
+          'files'  => true
+        ])
+      !!}
       @endif
 
       <!-- Card Header - Accordion -->
@@ -92,14 +99,14 @@
       <div class="collapse show" id="axe3">
         <div class="card-body">
 
-          @if($surat->status_surat == 2 || $surat->status_surat == 3)
+          @if($surat->status_surat == 2 || $surat->status_surat == 3 || $surat->status_surat == 9 || $surat->status_surat == 10)
           <div class="form-group">
             <div class="form-group col-md-12">
               <label for="no_surat">Nomor Surat</label>
               <div class="input-group mb-3">
               @if($surat->status_surat == 2)
                 <input id="no_surat" type="text" class="form-control @error('no_surat') is-invalid @enderror" name="no_surat" autocomplete="no_surat" required>
-              @elseif($surat->status_surat == 3)
+              @elseif($surat->status_surat == 3 || $surat->status_surat == 9 || $surat->status_surat == 10)
                 <input id="no_surat" type="text" class="form-control @error('no_surat') is-invalid @enderror" name="no_surat" autocomplete="no_surat" value="{{ $surat->no_surat}}" readonly>
               @endif
               </div>
@@ -127,7 +134,7 @@
             </div>
           </div>
 
-          @if($surat->status_surat == 3 || $surat->status_surat == 9)
+          @if($surat->status_surat == 3 || $surat->status_surat == 9 || $surat->status_surat == 10)
           <div class="form-group">
             <div class="form-group col-md-8">
               <label for="file_surat">Úpload Surat</label>
@@ -224,6 +231,17 @@
         <div class="row pl-3 pr-3">
           <div class="col-sm-8">
               <a href="{{ route(AKADEMIK . '.surat.disetujui') }}" class="btn btn-lg btn-primary">Kembali</a>
+          </div>
+          <div class="col-sm-4" style="text-align: right">
+              <button type="submit"class="btn btn-lg btn-success pull-right">
+                  {{ __('Selesai') }}
+              </button>
+          </div>
+        </div>
+        @elseif($surat->status_surat == 11)
+        <div class="row pl-3 pr-3">
+          <div class="col-sm-8">
+              <a href="{{ route(AKADEMIK . '.surat.selesai') }}" class="btn btn-lg btn-primary">Kembali</a>
           </div>
         </div>
         @endif
