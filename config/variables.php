@@ -44,14 +44,39 @@ return [
     ],
 
     'jurusan' => [
-        'JMTI' => 'JMTI',
-        'JTIP' => 'JTIP',
-        'JIKL' => 'JIKL',
-        'JSTPK' => 'JSTPK',
-        'JTSP' => 'JTSP',
+        'Jurusan Matematika dan Teknologi Informasi' => 'Jurusan Matematika dan Teknologi Informasi',
+        'Jurusan Teknologi Industri dan Proses' => 'Jurusan Teknologi Industri dan Proses',
+        'Jurusan Ilmu Kebumian dan Lingkungan' => 'Jurusan Ilmu Kebumian dan Lingkungan',
+        'Jurusan Sains, Teknologi Pangan, dan Kemaritiman' => 'Jurusan Sains, Teknologi Pangan, dan Kemaritiman',
+        'Jurusan Teknologi Sipil dan Perencanaan' => 'Jurusan Teknologi Sipil dan Perencanaan',
     ],
 
-    'jabatan' => [
+    'unit' => [
+        'Senat' => 'Senat',
+        'LPPM' => 'LPPM',
+        'UPT Bahasa' => 'UPT Bahasa',
+        'UPT TIK' => 'UPT TIK',
+        'UPT Perpustakaan' => 'UPT Perpustakaan',
+        'Unit Pelayanan Pengadaan Barang dan Jasa' => 'Unit Pelayanan Pengadaan Barang dan Jasa',
+        'Satuan Pengawas Internal' => 'Satuan Pengawas Internal',
+        'Kepanitian Terpusat' => 'Kepanitian Terpusat',
+        'Biro umum dan Akademik' => 'Biro umum dan Akademik',
+        'Koordinator Jabatan Fungsional Keuangan dan BMN' => 'Koordinator Jabatan Fungsional Keuangan dan BMN',
+        'Koordinator Jabatan Fungsional Kepegawaian' => 'Koordinator Jabatan Fungsional Kepegawaian',
+        'Koordinator Jabatan Fungsional Humas' => 'Koordinator Jabatan Fungsional Humas',
+        'Koordinator Jabatan Fungsional Sarana dan Prasarana' => 'Koordinator Jabatan Fungsional Sarana dan Prasarana',
+        'Koordinator Jabatan Fungsional Akademik dan Kemahasiswaan' => 'Koordinator Jabatan Fungsional Akademik dan Kemahasiswaan',
+        'Koordinator Jabatan Fungsional Perencanaan' => 'Koordinator Jabatan Fungsional Perencanaan',
+        'Pejabat Pembuat Komitmen' => 'Pejabat Pembuat Komitmen',
+        'Jurusan Matematika dan Teknologi Informasi' => 'Jurusan Matematika dan Teknologi Informasi',
+        'Jurusan Teknologi Industri dan Proses' => 'Jurusan Teknologi Industri dan Proses',
+        'Jurusan Ilmu Kebumian dan Lingkungan' => 'Jurusan Ilmu Kebumian dan Lingkungan',
+        'Jurusan Sains, Teknologi Pangan, dan Kemaritiman' => 'Jurusan Sains, Teknologi Pangan, dan Kemaritiman',
+        'Jurusan Teknologi Sipil dan Perencanaan' => 'Jurusan Teknologi Sipil dan Perencanaan',
+
+    ],
+
+    'unit_kerja' => [
         'Wakil Rektor Akademik' => 'Wakil Rektor Akademik',
         'Ketua Jurusan JMTI' => 'Ketua Jurusan JMTI',
         'Ketua Jurusan JTIP' => 'Ketua Jurusan JTIP',

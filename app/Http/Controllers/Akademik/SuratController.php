@@ -107,14 +107,16 @@ class SuratController extends Controller
         $this->validate($request,[
             'file_surat' => 'max:2000|mimes:pdf',
         ]);
+
         if (Storage::exists('surat/'.$surat->file_surat)) {
             Storage::delete('surat/'.$surat->file_surat);
         }
+
         $name = $request->file('file_surat')->getClientOriginalName();
         $file = $request->file('file_surat')->storeAs('surat/', $name, 'public');
         $surat->file_surat = $name;
         $surat->save();
-        return redirect()->route(AKADEMIK. '.surat.selesai')->withSuccess('Permohonan selesai diproses');
+        return redirect()->route(AKADEMIK. '.surat.selesai')->withSuccess('Permohonan surat selesai diproses');
     }
 
     public function export(Request $request, $id)

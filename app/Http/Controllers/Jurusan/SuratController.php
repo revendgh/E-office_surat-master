@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use PDF;
 use Auth;
+use Storage;
 
 class SuratController extends Controller
 {
@@ -67,6 +68,15 @@ class SuratController extends Controller
         return view('jurusan.surat.disetujui', compact('items'));
     }
 
+    public function selesai()
+    {
+        $jurusan = Auth::user()->tendik_jurusan->jurusan;
+        $items = Surat::where('status_surat', 21)->whereHas('user.mahasiswa', function($q) use ($jurusan){
+            $q->where('jurusan', $jurusan);
+        })->get();
+        return view('jurusan.surat.selesai', compact('items'));
+    }
+
     public function tolak(Request $request, $id)
     {
         $surat = Surat::findOrFail($id); 
@@ -96,6 +106,25 @@ class SuratController extends Controller
         $data['file_surat'] = $name;
         $surat->save();
         return redirect()->route(JURUSAN. '.surat.menunggu_persetujuan')->withSuccess('Permohonan surat berhasil diteruskan ke pejabat penandatangan');
+    }
+
+    public function penyelesaian($id)
+    {
+        $surat = Surat::findOrFail($id);
+        $surat->status_surat = 21;
+        $this->validate($request,[
+            'file_surat' => 'max:2000|mimes:pdf',
+        ]);
+        
+        if (Storage::exists('surat/'.$surat->file_surat)) {
+            Storage::delete('surat/'.$surat->file_surat);
+        }
+
+        $name = Str::random(5).' '.$request->file('file_surat')->getClientOriginalName();
+        $file = $request->file('file_surat')->storeAs('surat/', $name, 'public');
+        $data['file_surat'] = $name;
+        $surat->save();
+        return redirect()->route(JURUSAN. '.surat.selesai')->withSuccess('Permohonan surat selesai diproses');
     }
 
     public function export(Request $request, $id)

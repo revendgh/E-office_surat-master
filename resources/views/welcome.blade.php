@@ -164,29 +164,41 @@
                                     <form style="padding: 40px;">
                                         
                                         <div class="form-group">
+                                              {!! Form::open([
+                                                  'route' => [ UNIT. '.masuk.store' ],
+                                                  'files' => true
+                                                ])
+                                              !!}
+                                            <input type="hidden" name="tanggal_surat" value="{{date('Y-m-d')}}">
+                                            <input type="hidden" name="status_surat" value="{{ 0 }}">
                                             <label class="form_style">
                                                 Nama Instansi
-                                                <input class="input" type="text" placeholder="Nama Instansi">
+                                                <input class="input" name="pengirim_surat" type="text" placeholder="Nama Instansi">
                                             </label>
                                             <label class="form_style">
-                                                Email
-                                                <input class="input" type="text" placeholder="Email">
+                                                Nomor Surat
+                                                <input class="input" name="nomor_surat" type="text" placeholder="Nomor Surat">
+                                            </label>
+                                            <label class="form_style">
+                                                Perihal
+                                                <input class="input" name="perihal_surat" type="text" placeholder="Perihal Surat">
                                             </label>
                                             <label class="form_style">
                                                 Tujuan Surat
-                                                <input class="input" type="text" placeholder="Tujuan Surat">
+                                                <input class="input" name="tujuan_surat" type="text" placeholder="Tujuan Surat">
                                             </label>    
                                         </div>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="inputGroupFile04">
-                                                <label class="custom-file-label" for="inputGroupFile04">Lampiran</label>
+                                                <input type="file" name="file_surat" class="custom-file-input" id="inputGroupFile04">
+                                                <label class="custom-file-label" for="inputGroupFile04">Lampiran, ,maksimal 2MB dan hanya file PDF</label>
                                             </div>
                                         </div>
     
                                         <div class="footer-right">
                                             <button class="btn btn-primary" type="submit" data-attach-loading="" style="margin-top: 10px;">KIRIM</button>
                                         </div>
+                                        {!! Form::close() !!}
     
                                     </form>
                                 </div>

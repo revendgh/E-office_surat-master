@@ -84,17 +84,23 @@ Route::group(['prefix' => JURUSAN, 'as' => JURUSAN . '.', 'middleware'=>['auth',
     Route::get('surat/cetak', 'Jurusan\SuratController@cetak')->name('surat.cetak');
     Route::get('surat/menunggu', 'Jurusan\SuratController@menunggu_persetujuan')->name('surat.menunggu_persetujuan');
     Route::get('surat/disetujui', 'Jurusan\SuratController@disetujui')->name('surat.disetujui');
+    Route::get('surat/selesai', 'Jurusan\SuratController@selesai')->name('surat.selesai');
 
     Route::get('surat/verifikasi/{id}', 'Jurusan\SuratController@verifikasi')->name('surat.verifikasi');
     Route::put('surat/tolak/{id}', 'Jurusan\SuratController@tolak')->name('surat.tolak');
     Route::put('surat/cetak/{id}', 'Jurusan\SuratController@export')->name('surat.export');
     Route::put('surat/persetujuan/{id}', 'Jurusan\SuratController@persetujuan')->name('surat.persetujuan');
+    Route::put('surat/penyelesaian/{id}', 'Jurusan\SuratController@penyelesaian')->name('surat.penyelesaian');
 
     Route::resource('surat', 'Jurusan\SuratController');
 });
 
 Route::group(['prefix' => UNIT, 'as' => UNIT . '.', 'middleware'=>['auth', 'Role:4']], function () {
     Route::get('/', 'Unit\DashboardController@index')->name('dash');
+    Route::get('surat/', 'Unit\SuratController@index')->name('surat.index');
+    Route::get('surat/approve/', 'Unit\SuratController@approveall')->name('surat.approve.all');
+    Route::get('surat/approve/{id}', 'Unit\SuratController@approve')->name('surat.approve');
+    Route::get('surat/disetujui/', 'Unit\SuratController@disetujui')->name('surat.disetujui');
     Route::resource('masuk', 'Unit\SuratMasukController');
     Route::resource('keluar', 'Unit\SuratKeluarController');
 });
